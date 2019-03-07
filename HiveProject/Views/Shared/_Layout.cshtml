@@ -20,10 +20,14 @@
                 <a class="nav-link">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
                 <a class="nav-link">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
             </div>
+            <div class="navbar-nav ml-auto">
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
+
     </nav>
 
-    <div class="container body-content" >
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
