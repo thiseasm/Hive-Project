@@ -3,7 +3,7 @@ namespace HiveProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initialize : DbMigration
+    public partial class InitializeNewDatabase : DbMigration
     {
         public override void Up()
         {

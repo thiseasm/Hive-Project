@@ -7,13 +7,13 @@ namespace HiveProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initialize : IMigrationMetadata
+    public sealed partial class InitializeNewDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initialize));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitializeNewDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903041712575_Initialize"; }
+            get { return "201903071428403_InitializeNewDatabase"; }
         }
         
         string IMigrationMetadata.Source
