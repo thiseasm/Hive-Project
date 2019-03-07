@@ -9,8 +9,9 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, new { @class = "navbar-brand" } @*routeValues: null, htmlAttributes: new { title = "Manage" }*@)
+            @Html.ActionLink("Hello, " + User.Identity.GetUserName() + "!", "Index", "Manage", new { area = "" }, new { @class = "navbar-brand" } @*routeValues: null, htmlAttributes: new { title = "Manage" }*@)
         </li>
+        <li class = "navbar-brand"> | </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()" class="navbar-brand">Log off</a></li>
     </ul>
     }
@@ -18,7 +19,8 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" } @*htmlAttributes: new { id = "registerLink" }*@)</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" } @*htmlAttributes: new { id = "loginLink" }*@)</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" }@*htmlAttributes: new { id = "loginLink" }*@)</li>
+        <li class="navbar-brand"> | </li>
+        <li>@Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" }@*htmlAttributes: new { id = "registerLink" }*@)</li>
     </ul>
 }
