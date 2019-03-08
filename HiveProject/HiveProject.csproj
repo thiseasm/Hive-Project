@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.Designer.cs">
       <DependentUpon>201903071428403_InitializeNewDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903081459200_AddingNewUserFields.cs" />
+    <Compile Include="Migrations\201903081459200_AddingNewUserFields.Designer.cs">
+      <DependentUpon>201903081459200_AddingNewUserFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -303,6 +307,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903071428403_InitializeNewDatabase.resx">
       <DependentUpon>201903071428403_InitializeNewDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903081459200_AddingNewUserFields.resx">
+      <DependentUpon>201903081459200_AddingNewUserFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

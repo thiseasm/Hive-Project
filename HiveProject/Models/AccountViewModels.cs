@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HiveProject.Models
@@ -79,6 +80,12 @@ namespace HiveProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Range(1, 3, ErrorMessage = "The Gender field is required.")]
+        public HiveProject.Models.ApplicationUser.Gender Gender { get; set; }
+
+        public DateTime Birthday { get; set; }
     }
 
     public class ResetPasswordViewModel
