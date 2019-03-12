@@ -19,7 +19,7 @@ namespace HiveProject.Models
         [Required]
         public DateTime Birthday { get; set; }
 
-        public string Thumnail { get; set; }
+        public string Thumbnail { get; set; }
 
         [NotMapped]
         public HttpPostedFileBase Avatar { get; set; }

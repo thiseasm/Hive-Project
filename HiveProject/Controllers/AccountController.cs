@@ -153,13 +153,15 @@ namespace HiveProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var user = new ApplicationUser {
                     UserName = model.Email,
                     Email = model.Email,
                     UserGender=model.Gender,
                     Birthday=model.Birthday,
-                    Thumnail=Path.GetFileName("~/Content/Images/bee.png")
+                    Thumbnail=Path.GetFileName("~/Content/Images/bee.png")
                 };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
