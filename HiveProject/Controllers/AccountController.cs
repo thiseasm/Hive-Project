@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HiveProject.Models;
+using System.IO;
 
 namespace HiveProject.Controllers
 {
@@ -156,7 +157,8 @@ namespace HiveProject.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     UserGender=model.Gender,
-                    Birthday=model.Birthday
+                    Birthday=model.Birthday,
+                    Thumnail=Path.GetFileName("~/Content/Images/bee.png")
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
