@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace HiveProject.Models
 {
@@ -24,6 +25,7 @@ namespace HiveProject.Models
         [NotMapped]
         public HttpPostedFileBase Avatar { get; set; }
 
+        public ICollection<Preference> Preferences { get; set; }
 
         public enum Gender
         {
@@ -39,6 +41,11 @@ namespace HiveProject.Models
             // Add custom user claims here
             return userIdentity;
         }
+    }
+
+    public class Preference
+    {
+        public List<ApplicationUser.Gender> Preferences {get;set;}
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
