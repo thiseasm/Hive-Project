@@ -25,7 +25,9 @@ namespace HiveProject.Models
         [NotMapped]
         public HttpPostedFileBase Avatar { get; set; }
 
-        public ICollection<Preference> Preferences { get; set; }
+        public CurrentLocation CurrentLocation { get; set; }
+
+        public UserPreferences Preferences { get; set; }
 
         public enum Gender
         {
@@ -43,10 +45,7 @@ namespace HiveProject.Models
         }
     }
 
-    public class Preference
-    {
-        public List<ApplicationUser.Gender> Preferences {get;set;}
-    }
+    
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
