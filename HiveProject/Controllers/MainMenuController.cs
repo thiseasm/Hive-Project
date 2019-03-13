@@ -1,31 +1,59 @@
 ﻿using HiveProject.Models;
 using HiveProject.Viewmodels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace HiveProject.Controllers
 {
     [Authorize]
-    [System.Runtime.InteropServices.Guid("4FAC958D-84A4-4265-83A2-18493FB9A39C")]
     public class MainMenuController : Controller
     {
-        // GET: MainMenu
         public ActionResult Index()
         {
-            var accountviewmodel = new AccountViewModel();
+            return View();
+        }
+
+
+        // GET: MainMenu
+        public ActionResult Profile()
+        {
+            var profile = new ProfileViewModel();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
                 if(user!=null)
                 {
-                    accountviewmodel.Username = user.UserName;
-                    accountviewmodel.Thumbnail = user.Thumbnail;
+                    profile.Id = user.Id;
+                    profile.Thumbnail = user.Thumbnail;
                 }
             }
-                return View(accountviewmodel);
+                return View(profile);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfilePic(ApplicationUser user, HttpPostedFileBase Avatar)
+        {
+            if (Avatar != null)
+            {
+                user.Thumbnail = Path.GetFileName(user.Avatar.FileName);
+                string fileName = Path.Combine(Server.MapPath("~/Content/Images/"), user.Thumbnail);
+                Avatar.SaveAs(fileName);
+                using (var context = new ApplicationDbContext())
+                {
+                    var usertoupdate = context.Users.Find(user.Id);
+                    usertoupdate.Thumbnail = user.Thumbnail;
+                    context.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("Profile");
         }
     }
 }

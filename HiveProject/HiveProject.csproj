@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201903121345081_FixingTypo.Designer.cs">
       <DependentUpon>201903121345081_FixingTypo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903131252523_ReplaceBirthdateWithAge.cs" />
+    <Compile Include="Migrations\201903131252523_ReplaceBirthdateWithAge.Designer.cs">
+      <DependentUpon>201903131252523_ReplaceBirthdateWithAge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -299,6 +303,8 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\MainMenu\Index.cshtml" />
+    <Content Include="Views\MainMenu\Profile.cshtml" />
+    <Content Include="Views\Manage\ChangeUsername.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903121345081_FixingTypo.resx">
       <DependentUpon>201903121345081_FixingTypo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131252523_ReplaceBirthdateWithAge.resx">
+      <DependentUpon>201903131252523_ReplaceBirthdateWithAge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

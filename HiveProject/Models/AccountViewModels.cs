@@ -85,7 +85,9 @@ namespace HiveProject.Models
         [Range(1, 3, ErrorMessage = "The Gender field is required.")]
         public HiveProject.Models.ApplicationUser.Gender Gender { get; set; }
 
-        public DateTime Birthday { get; set; }
+        [Required]
+        [Range(18, 99, ErrorMessage = "The Age should be between 18 and 99")]
+        public int Age { get; set; }
     }
 
     public class ResetPasswordViewModel

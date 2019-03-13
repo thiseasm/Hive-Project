@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,7 +18,7 @@ namespace HiveProject.Models
         public Gender UserGender { get; set; }
 
         [Required]
-        public DateTime Birthday { get; set; }
+        public int Age { get; set; }
 
         public string Thumbnail { get; set; }
 

@@ -5,9 +5,9 @@ using System.Web;
 
 namespace HiveProject.Viewmodels
 {
-    public class AccountViewModel
+    public class ProfileViewModel
     {
-        public string Username { get; set; }
+        public string Id { get; set; }
         public string Thumbnail { get; set; }
     }
 }
