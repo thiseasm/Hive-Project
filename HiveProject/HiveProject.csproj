@@ -311,6 +311,7 @@
     <Content Include="Views\MainMenu\Index.cshtml" />
     <Content Include="Views\MainMenu\Profile.cshtml" />
     <Content Include="Views\Manage\ChangeUsername.cshtml" />
+    <Content Include="Views\MainMenu\Matching.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

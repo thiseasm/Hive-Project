@@ -3,6 +3,7 @@ using HiveProject.Viewmodels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,45 +60,51 @@ namespace HiveProject.Controllers
         // Testing match
 
 
-        public ActionResult Matching()
+        public async Task<ActionResult> Matching()
         {
             var myLikes = new List<Likes>();
             var likedFrom = new List<Likes>();
             var matchingList = new List<ApplicationUser>();
             var finalMatchingList = new List<ApplicationUser>();
+            string currentLoggedUser = User.Identity.GetUserId();
             using (var db = new ApplicationDbContext())
             {
-                myLikes = db.Likes.Where(x => x.SenderId == User.Identity.GetUserId() && x.Like==true).ToList();
-                likedFrom = db.Likes.Where(x => x.ReceiverId == User.Identity.GetUserId() && x.Like==true).ToList();
+                myLikes =await db.Likes.Where(x => x.SenderId == currentLoggedUser && x.Like==true).ToListAsync();
+                likedFrom =await db.Likes.Where(x => x.ReceiverId == currentLoggedUser && x.Like==true).ToListAsync();
+                
             }
-
-            
 
             foreach(var x in myLikes)
             {
                 foreach(var y in likedFrom)
                 {
                     if (x.ReceiverId == y.SenderId)
-                        matchingList.Add(new ApplicationUser { Id = x.ReceiverId });
+                       matchingList.Add(new ApplicationUser { Id = x.ReceiverId });
                 }
             }
 
             using (var db = new ApplicationDbContext())
             {
-                finalMatchingList = db.Users.Where(x => matchingList.Any(y => y.Id == x.Id)).ToList();
+                foreach(var item in matchingList)
+                {
+                    var matchedUser = await db.Users.FirstOrDefaultAsync(x => x.Id == item.Id);
+                    finalMatchingList.Add(matchedUser);
+                }
+
             }
 
-            var matchingModel = new MatchingViewModel();
+            var matchingModel = new List<MatchingViewModel>();
             foreach(var user in finalMatchingList)
             {
-                matchingModel.Id = user.Id;
-                matchingModel.Username = user.UserName;
-                matchingModel.Thumbnail = user.Thumbnail;
-                matchingModel.Age = user.Age;
-                matchingModel.Gender = user.UserGender;
+                matchingModel.Add(new MatchingViewModel
+                {
+                    Id=user.Id,
+                    Thumbnail=user.Thumbnail,
+                    Age=user.Age,
+                    Gender=user.UserGender,
+                    Username=user.UserName
+                });
             }
-
-
                 return View(matchingModel);
         }
 
