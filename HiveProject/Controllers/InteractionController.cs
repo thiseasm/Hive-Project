@@ -15,14 +15,6 @@ namespace HiveProject.Controllers
             return View();
         }
 
-        public List<ApplicationUser> GetUnmatchedUsers(ApplicationUser User1)
-        {
-            using(var db = new ApplicationDbContext())
-            {
-                //TODO add linQ for unmatched users
-            }
-            
-                
-        }
+        
     }
 }
