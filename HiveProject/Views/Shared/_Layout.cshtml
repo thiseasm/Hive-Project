@@ -21,6 +21,10 @@
                 <a class="nav-link">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
             </div>
             <div class="navbar-nav ml-auto">
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Profile", "Profile", "Mainmenu", new { area = "" }, new { @class = "navbar-brand" })
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

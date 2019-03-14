@@ -72,6 +72,7 @@ namespace HiveProject.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 
+                
             };
             return View(model);
         }
@@ -334,7 +335,35 @@ namespace HiveProject.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        public ActionResult ChangeUsername()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeUserName(ChangeUsernameViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            user.UserName = model.UserName;
+            var result = await UserManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index");
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
