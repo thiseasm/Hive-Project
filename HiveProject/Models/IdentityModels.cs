@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -25,6 +26,12 @@ namespace HiveProject.Models
         [NotMapped]
         public HttpPostedFileBase Avatar { get; set; }
 
+        [InverseProperty("User1")]
+        public virtual ICollection<Likes> Likes1 { get; set; }
+
+        [InverseProperty("User2")]
+        public virtual ICollection<Likes> Likes2 { get; set; }
+
 
         public enum Gender
         {
@@ -48,6 +55,8 @@ namespace HiveProject.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public virtual DbSet<Likes> Likes { get; set; }
 
         public static ApplicationDbContext Create()
         {

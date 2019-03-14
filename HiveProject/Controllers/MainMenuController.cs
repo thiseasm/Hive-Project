@@ -27,13 +27,13 @@ namespace HiveProject.Controllers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-                if(user!=null)
+                if (user != null)
                 {
                     profile.Id = user.Id;
                     profile.Thumbnail = user.Thumbnail;
                 }
             }
-                return View(profile);
+            return View(profile);
         }
 
         [HttpPost]
@@ -55,5 +55,51 @@ namespace HiveProject.Controllers
             }
             return RedirectToAction("Profile");
         }
+
+        // Testing match
+
+
+        public ActionResult Matching()
+        {
+            var myLikes = new List<Likes>();
+            var likedFrom = new List<Likes>();
+            var matchingList = new List<ApplicationUser>();
+            var finalMatchingList = new List<ApplicationUser>();
+            using (var db = new ApplicationDbContext())
+            {
+                myLikes = db.Likes.Where(x => x.SenderId == User.Identity.GetUserId() && x.Like==true).ToList();
+                likedFrom = db.Likes.Where(x => x.ReceiverId == User.Identity.GetUserId() && x.Like==true).ToList();
+            }
+
+            
+
+            foreach(var x in myLikes)
+            {
+                foreach(var y in likedFrom)
+                {
+                    if (x.ReceiverId == y.SenderId)
+                        matchingList.Add(new ApplicationUser { Id = x.ReceiverId });
+                }
+            }
+
+            using (var db = new ApplicationDbContext())
+            {
+                finalMatchingList = db.Users.Where(x => matchingList.Any(y => y.Id == x.Id)).ToList();
+            }
+
+            var matchingModel = new MatchingViewModel();
+            foreach(var user in finalMatchingList)
+            {
+                matchingModel.Id = user.Id;
+                matchingModel.Username = user.UserName;
+                matchingModel.Thumbnail = user.Thumbnail;
+                matchingModel.Age = user.Age;
+                matchingModel.Gender = user.UserGender;
+            }
+
+
+                return View(matchingModel);
+        }
+
     }
 }
