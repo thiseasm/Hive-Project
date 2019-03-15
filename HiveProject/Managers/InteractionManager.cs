@@ -20,8 +20,8 @@ namespace HiveProject.Managers
 
             foreach (var user in allUsers)
             {
-                var distanceLongitude = user.CurrentLocation.Location.Longitude - User1.CurrentLocation.Location.Longitude;
-                var distanceLatitude = user.CurrentLocation.Location.Latitude - User1.CurrentLocation.Location.Latitude;
+                var distanceLongitude = user.CurrentLocation.Longitude - User1.CurrentLocation.Longitude;
+                var distanceLatitude = user.CurrentLocation.Latitude - User1.CurrentLocation.Latitude;
                 var distance = Math.Sqrt((double)(distanceLatitude * distanceLatitude + distanceLongitude * distanceLongitude));
 
                 if (distance <= User1.CurrentLocation.Radius)

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HiveProject.Models
 {
@@ -15,13 +17,14 @@ namespace HiveProject.Models
     {
         public int Radius { get; set; }
 
-        public Location Location { get; set; }
-    }
-
-    public class Location
-    {
+        [Key]
+        [Column(Order = 1)]
         public decimal Latitude { get; set; }
 
+        [Key]
+        [Column(Order = 2)]
         public decimal Longitude { get; set; }
     }
+
+  
 }
