@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace HiveProject.Models
 {
@@ -32,6 +33,9 @@ namespace HiveProject.Models
         [InverseProperty("User2")]
         public virtual ICollection<Likes> Likes2 { get; set; }
 
+        public CurrentLocation CurrentLocation { get; set; }
+
+        public UserPreferences Preferences { get; set; }
 
         public enum Gender
         {
