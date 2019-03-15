@@ -179,6 +179,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\MatchingManager.cs" />
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.cs" />
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.Designer.cs">
       <DependentUpon>201903071428403_InitializeNewDatabase.cs</DependentUpon>
@@ -208,6 +209,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Matches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Viewmodels\MatchingViewModel.cs" />

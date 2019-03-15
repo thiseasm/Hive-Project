@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using HiveProject.Managers;
 
 namespace HiveProject.Controllers
 {
@@ -59,55 +60,10 @@ namespace HiveProject.Controllers
 
         public async Task<ActionResult> Matching()
         {
-            var myLikes = new List<string>();
-            var likedFrom = new List<string>();
-            var matchingList = new List<ApplicationUser>();
-            var finalMatchingList = new List<ApplicationUser>();
-            string currentLoggedUser = User.Identity.GetUserId();
-
-            using (var db = new ApplicationDbContext())
-            {
-                myLikes = await db.Likes.Where(x => x.SenderId == currentLoggedUser && x.Like == true)
-                                        .Select(y => y.ReceiverId)
-                                        .Distinct()
-                                        .ToListAsync();
-                likedFrom = await db.Likes.Where(x => x.ReceiverId == currentLoggedUser && x.Like == true)
-                                        .Select(y => y.SenderId)
-                                        .Distinct()
-                                        .ToListAsync();
-            }
-
-            foreach (var likedUser in myLikes)
-            {
-                foreach (var likedByUser in likedFrom)
-                {
-                    if (likedUser == likedByUser)
-                        matchingList.Add(new ApplicationUser { Id = likedUser });
-                }
-            }
-
-            using (var db = new ApplicationDbContext())
-            {
-                foreach (var matchedUser in matchingList)
-                {
-                    var finalMatchedUser = await db.Users.FirstOrDefaultAsync(x => x.Id == matchedUser.Id);
-                    finalMatchingList.Add(finalMatchedUser);
-                }
-            }
-
-            var matchingModel = new List<MatchingViewModel>();
-            foreach (var user in finalMatchingList)
-            {
-                matchingModel.Add(new MatchingViewModel
-                {
-                    Id = user.Id,
-                    Thumbnail = user.Thumbnail,
-                    Age = user.Age,
-                    Gender = user.UserGender,
-                    Username = user.UserName
-                });
-            }
-            return View(matchingModel);
+            MatchingManager manager = new MatchingManager();
+           await manager.AsyncMatching();
+            var matches = await manager.AsyncReturnMatches();
+            return View(matches);
         }
 
     }
