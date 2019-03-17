@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201903132231362_AddingLikesTable.Designer.cs">
       <DependentUpon>201903132231362_AddingLikesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903171635178_UpdatingDatabase.cs" />
+    <Compile Include="Migrations\201903171635178_UpdatingDatabase.Designer.cs">
+      <DependentUpon>201903171635178_UpdatingDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -326,6 +330,7 @@
     <Content Include="Views\MainMenu\Matching.cshtml" />
     <Content Include="Scripts\leaflet\leaflet-src.js.map" />
     <Content Include="Scripts\leaflet\leaflet.js.map" />
+    <Content Include="Views\Shared\_MapPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903132231362_AddingLikesTable.resx">
       <DependentUpon>201903132231362_AddingLikesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903171635178_UpdatingDatabase.resx">
+      <DependentUpon>201903171635178_UpdatingDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
