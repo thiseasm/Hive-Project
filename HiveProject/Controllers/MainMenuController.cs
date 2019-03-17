@@ -61,7 +61,7 @@ namespace HiveProject.Controllers
         public async Task<ActionResult> Matching()
         {
             MatchingManager manager = new MatchingManager();
-           await manager.AsyncMatching();
+            await manager.AsyncMatching();
             var matches = await manager.AsyncReturnMatches();
             return View(matches);
         }
