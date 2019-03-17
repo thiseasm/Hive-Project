@@ -33,7 +33,7 @@ namespace HiveProject.Models
         [InverseProperty("User2")]
         public virtual ICollection<Likes> Likes2 { get; set; }
 
-        public CurrentLocation CurrentLocation { get; set; }
+        public virtual CurrentLocation Location { get; set; }
 
         public UserPreferences Preferences { get; set; }
 

@@ -205,6 +205,18 @@
     <Compile Include="Migrations\201903132231362_AddingLikesTable.Designer.cs">
       <DependentUpon>201903132231362_AddingLikesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903172302160_UserPreference.cs" />
+    <Compile Include="Migrations\201903172302160_UserPreference.Designer.cs">
+      <DependentUpon>201903172302160_UserPreference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903172314489_PreferenceUpdate.cs" />
+    <Compile Include="Migrations\201903172314489_PreferenceUpdate.Designer.cs">
+      <DependentUpon>201903172314489_PreferenceUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903172326462_LocationUpdate.cs" />
+    <Compile Include="Migrations\201903172326462_LocationUpdate.Designer.cs">
+      <DependentUpon>201903172326462_LocationUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -321,7 +333,9 @@
     <Folder Include="Views\Interaction\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
@@ -349,6 +363,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903132231362_AddingLikesTable.resx">
       <DependentUpon>201903132231362_AddingLikesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903172302160_UserPreference.resx">
+      <DependentUpon>201903172302160_UserPreference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903172314489_PreferenceUpdate.resx">
+      <DependentUpon>201903172314489_PreferenceUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903172326462_LocationUpdate.resx">
+      <DependentUpon>201903172326462_LocationUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
