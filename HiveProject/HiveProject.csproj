@@ -180,6 +180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IStore.cs" />
     <Compile Include="Managers\InteractionManager.cs" />
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.cs" />
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.Designer.cs">
@@ -211,11 +212,14 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChatSystem\Message.cs" />
+    <Compile Include="Models\ChatSystem\MessageViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CurrentLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MessageRepositories.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Viewmodels\MatchingViewModel.cs" />
     <Compile Include="Viewmodels\ProfileViewModel.cs" />

@@ -7,6 +7,7 @@ using System.Data.SqlTypes;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using HiveProject.Models.ChatSystem;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -60,6 +61,15 @@ namespace HiveProject.Models
         }
 
         public virtual DbSet<Likes> Likes { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+
+        public ICollection<Message> SentMessages { get; set; }
+        public ICollection<Message> ReceivedMessages { get; set; }
+
+       
+
+
+
         public virtual DbSet<CurrentLocation> CurrentLocations { get; set; }
 
         public static ApplicationDbContext Create()
