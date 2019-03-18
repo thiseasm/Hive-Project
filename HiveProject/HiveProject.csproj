@@ -330,7 +330,6 @@
     <Content Include="Views\MainMenu\Matching.cshtml" />
     <Content Include="Scripts\leaflet\leaflet-src.js.map" />
     <Content Include="Scripts\leaflet\leaflet.js.map" />
-    <Content Include="Views\Shared\_MapPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
