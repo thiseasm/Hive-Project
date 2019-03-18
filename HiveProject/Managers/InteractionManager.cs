@@ -20,11 +20,11 @@ namespace HiveProject.Managers
 
             foreach (var user in allUsers)
             {
-                var distanceLongitude = user.CurrentLocation.Longitude - User1.CurrentLocation.Longitude;
-                var distanceLatitude = user.CurrentLocation.Latitude - User1.CurrentLocation.Latitude;
+                var distanceLongitude = user.Location.Longitude - User1.Location.Longitude;
+                var distanceLatitude = user.Location.Latitude - User1.Location.Latitude;
                 var distance = Math.Sqrt((double)(distanceLatitude * distanceLatitude + distanceLongitude * distanceLongitude));
 
-                if (distance <= User1.CurrentLocation.Radius)
+                if (distance <= User1.Location.Radius)
                 {
                     nearbyUsers.Add(user);
                 }

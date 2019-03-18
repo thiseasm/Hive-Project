@@ -7,20 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HiveProject.Models
 {
-    public class UserPreferences
-    {
-        [Key]
-        [Column(Order = 1)]
-        public int Id { get; set; }
-
-        [Key]
-        [Column(Order = 2)]
-        public ApplicationUser.Gender Preference { get; set; }
-
-        public ICollection<ApplicationUser> Users { get; set; }
-
-    }
-
     public class CurrentLocation
     {
         [ForeignKey("User")]

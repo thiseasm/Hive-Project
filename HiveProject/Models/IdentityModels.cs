@@ -35,7 +35,6 @@ namespace HiveProject.Models
 
         public virtual CurrentLocation Location { get; set; }
 
-        public UserPreferences Preferences { get; set; }
 
         public enum Gender
         {
@@ -61,6 +60,7 @@ namespace HiveProject.Models
         }
 
         public virtual DbSet<Likes> Likes { get; set; }
+        public virtual DbSet<CurrentLocation> CurrentLocations { get; set; }
 
         public static ApplicationDbContext Create()
         {

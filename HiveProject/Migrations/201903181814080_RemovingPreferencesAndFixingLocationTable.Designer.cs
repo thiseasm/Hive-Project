@@ -7,13 +7,13 @@ namespace HiveProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class LocationUpdate : IMigrationMetadata
+    public sealed partial class RemovingPreferencesAndFixingLocationTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(LocationUpdate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovingPreferencesAndFixingLocationTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903172326462_LocationUpdate"; }
+            get { return "201903181814080_RemovingPreferencesAndFixingLocationTable"; }
         }
         
         string IMigrationMetadata.Source
