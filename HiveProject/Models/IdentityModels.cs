@@ -33,9 +33,7 @@ namespace HiveProject.Models
         [InverseProperty("User2")]
         public virtual ICollection<Likes> Likes2 { get; set; }
 
-        public CurrentLocation CurrentLocation { get; set; }
-
-        public UserPreferences Preferences { get; set; }
+        public virtual CurrentLocation CurrentLocation { get; set; }
 
         public enum Gender
         {
@@ -61,6 +59,7 @@ namespace HiveProject.Models
         }
 
         public virtual DbSet<Likes> Likes { get; set; }
+        public virtual DbSet<CurrentLocation> CurrentLocations { get; set; }
 
         public static ApplicationDbContext Create()
         {

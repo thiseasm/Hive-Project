@@ -7,13 +7,13 @@ namespace HiveProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Email : IMigrationMetadata
+    public sealed partial class AddingLocations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Email));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingLocations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903171635178_Email"; }
+            get { return "201903181830530_AddingLocations"; }
         }
         
         string IMigrationMetadata.Source
