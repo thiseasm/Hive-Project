@@ -178,7 +178,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Chathub.cs" />
+    <Compile Include="ChatHub\Chathub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InteractionController.cs" />
@@ -232,6 +232,7 @@
     <Compile Include="Viewmodels\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Chat.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
