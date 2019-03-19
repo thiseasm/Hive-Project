@@ -6,22 +6,41 @@
 <head>
     @Styles.Render("~/Scripts/leaflet/leaflet.css")
     @Scripts.Render("~/Scripts/leaflet/leaflet.js")
-    <script>
-        var mymap = L.map('mapid').setView([@Model.CurrentLocation.Latitude, @Model.CurrentLocation.Longitude], 13);
+    @Scripts.Render("~/Scripts/hive.map.interaction.js")
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoidGhpc2Vhc20iLCJhIjoiY2p0ZDNrZDUwMHZ0ejQzcWlxb3BrdDV3cCJ9.2drjw4y3oUVkXhb3qNoFAg'
-        }).addTo(mymap);
 
-        
-        var marker = L.marker([@Model.CurrentLocation.Latitude, @Model.CurrentLocation.Longitude]).addTo(mymap);
-    </script>
 
 </head>
-<h2>Index</h2>
+<body>
+    <h2>Index</h2>
+    <div id="mapid" style="height: 180px;"></div>
 
-<div id="mapid"></div>
+
+    <script>
+
+
+        var coordinates = getLocation();
+        if (typeof coordinates === 'string') {
+            alert(coordinates);
+        }
+        else {
+            var mymap = L.map('mapid').setView([coordinates[0], coordinates[1]], 13);
+
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                accessToken: 'pk.eyJ1IjoidGhpc2Vhc20iLCJhIjoiY2p0ZDNrZDUwMHZ0ejQzcWlxb3BrdDV3cCJ9.2drjw4y3oUVkXhb3qNoFAg'
+            }).addTo(mymap);
+
+
+            var marker = L.marker([coordinates[0], coordinates[1]]).addTo(mymap);
+        }
+    </script>
+
+</body>
+
+
+
+
 
