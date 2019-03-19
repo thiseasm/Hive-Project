@@ -8,28 +8,17 @@ namespace HiveProject.Managers
 {
     public class InteractionManager
     {
-        public List<ApplicationUser> GetNearbyUsers(ApplicationUser User1)
+        public IEnumerable<ApplicationUser> GetNearbyUsers(ApplicationUser User1)
         {
-            List<ApplicationUser> allUsers = new List<ApplicationUser>();
-            List<ApplicationUser> nearbyUsers = new List<ApplicationUser>();
+            IEnumerable<ApplicationUser> nearbyUsers = Enumerable.Empty<ApplicationUser>();
 
             using (var db = new ApplicationDbContext())
             {
-                allUsers = db.Users.ToList();
+                nearbyUsers = db.Users.
+                    Where(u => u.Id != User1.Id
+                    && User1.CurrentLocation.Distance(u.CurrentLocation) <= User1.Radius)
+                    .ToList();
             }
-
-            foreach (var user in allUsers)
-            {
-                var distanceLongitude = user.CurrentLocation.Longitude - User1.CurrentLocation.Longitude;
-                var distanceLatitude = user.CurrentLocation.Latitude - User1.CurrentLocation.Latitude;
-                var distance = Math.Sqrt((double)(distanceLatitude * distanceLatitude + distanceLongitude * distanceLongitude));
-
-                if (distance <= User1.CurrentLocation.Radius)
-                {
-                    nearbyUsers.Add(user);
-                }
-            }
-
             return nearbyUsers;
         }
     }

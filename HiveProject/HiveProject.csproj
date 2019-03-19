@@ -209,12 +209,16 @@
     <Compile Include="Migrations\201903181830530_AddingLocations.Designer.cs">
       <DependentUpon>201903181830530_AddingLocations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903191924353_LocationOptimization.cs" />
+    <Compile Include="Migrations\201903191924353_LocationOptimization.Designer.cs">
+      <DependentUpon>201903191924353_LocationOptimization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\CurrentLocation.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Viewmodels\MatchingViewModel.cs" />
@@ -368,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903181830530_AddingLocations.resx">
       <DependentUpon>201903181830530_AddingLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191924353_LocationOptimization.resx">
+      <DependentUpon>201903191924353_LocationOptimization.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
