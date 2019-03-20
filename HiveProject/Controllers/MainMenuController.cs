@@ -10,17 +10,24 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using HiveProject.Managers;
+using System.Web.Services;
 
 namespace HiveProject.Controllers
 {
     [Authorize]
     public class MainMenuController : Controller
     {
+        private MatchingManager _Manager { get; set; }
+
+        public MainMenuController()
+        {
+            _Manager = new MatchingManager();
+        }
 
 
         public async Task<ActionResult> Index()
         {
-            var getUsers =await new MatchingManager().GetUsersAsync();
+            var getUsers = await new MatchingManager().GetUsersAsync();
             return View(getUsers);
         }
 
@@ -63,10 +70,26 @@ namespace HiveProject.Controllers
 
         public async Task<ActionResult> Matching()
         {
-            MatchingManager manager = new MatchingManager();
-           // await manager.AsyncMatching();
-            var matches = await manager.ReturnMatchesAsync();
+            // await manager.AsyncMatching();
+            var matches = await _Manager.ReturnMatchesAsync();
             return View(matches);
+        }
+
+        [HttpPost]
+        //[WebMethod]
+        public async Task<JsonResult> AddLike(string id)
+        {
+            var like = true;
+            await _Manager.AddLikeAndMatch(id, like);
+            return Json(new { success = true });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddDislike(string id)
+        {
+            var like = false;
+            await _Manager.AddLikeAndMatch(id, like);
+            return Json(new { success = true });
         }
 
     }

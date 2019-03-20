@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table id="users" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Username)
@@ -21,7 +21,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Age)
         </th>
-        <th></th>
+        <th>
+            Like
+        </th>
+        <th>
+            Dislike
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -40,10 +45,42 @@
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
-                @Html.ActionLink("Like", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Dislike", "Details", new { id = item.Id }) |
+                <button data-user-id="@item.Id" class="btn-link js-like">Like</button>
+            </td>
+            <td>
+                <button data-user-id="@item.Id" class="btn-link js-dislike">Dislike</button>
             </td>
         </tr>
     }
 
 </table>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#users .js-like").on("click", function () {
+                var button = $(this);
+                $.ajax({
+                    method: "POST",
+                    async: true,
+                    url: "/MainMenu/AddLike/" + button.attr("data-user-id"),
+                    success: function () {
+                        button.parents("tr").remove();
+                    }
+                });
+            });
+            $("#users .js-dislike").on("click", function () {
+                var button = $(this);
+                $.ajax({
+                    method: "POST",
+                    async: true,
+                    url: "/MainMenu/AddDislike/" + button.attr("data-user-id"),
+                    success: function () {
+                        button.parents("tr").remove();
+                    }
+                });
+            })
+        });
+    </script>
+}
