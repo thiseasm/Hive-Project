@@ -76,7 +76,6 @@ namespace HiveProject.Controllers
         }
 
         [HttpPost]
-        //[WebMethod]
         public async Task<JsonResult> AddLike(string id)
         {
             var like = true;

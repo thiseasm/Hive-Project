@@ -21,14 +21,14 @@ namespace HiveProject.Managers
         }
 
 
-        public async Task<List<GetUsersViewModel>> GetUsersAsync()
+        public async Task<List<UsersViewModel>> GetUsersAsync()
         {
             using (var db = new ApplicationDbContext())
             {
                 var returnUsers = await db.Users
                                     .Where(t => t.Id != _currentLoggedUser && !db.Likes
                                     .Where(u => u.SenderId == _currentLoggedUser && u.ReceiverId == t.Id).Any())
-                                    .Select(g => new GetUsersViewModel
+                                    .Select(g => new UsersViewModel
                                     {
                                         Id = g.Id,
                                         Thumbnail = g.Thumbnail,
@@ -54,7 +54,7 @@ namespace HiveProject.Managers
                     Like = like
                 });
 
-                if (await db.Likes.Where(x => x.SenderId == id && x.ReceiverId == _currentLoggedUser && x.Like == true).AnyAsync())
+                if (like==true && await db.Likes.Where(x => x.SenderId == id && x.ReceiverId == _currentLoggedUser && x.Like == true).AnyAsync())
                 {
                     db.Matches.Add(new Matches
                     {
@@ -69,7 +69,6 @@ namespace HiveProject.Managers
                         SeenByMyUser = false
                     });
                 }
-
                 await db.SaveChangesAsync();
             }
         }
@@ -136,12 +135,12 @@ namespace HiveProject.Managers
             }
         }
 
-        public async Task<List<GetUsersViewModel>> ReturnMatchesAsync()
+        public async Task<List<UsersViewModel>> ReturnMatchesAsync()
         {
             using (var db = new ApplicationDbContext())
             {
                 var matches = await db.Matches.Include(y => y.MatchedUser2).Where(x => x.MyUserId == _currentLoggedUser)
-                                            .Select(g => new GetUsersViewModel
+                                            .Select(g => new UsersViewModel
                                             {
                                                 Id = g.MatchedUser2.Id,
                                                 Thumbnail = g.MatchedUser2.Thumbnail,

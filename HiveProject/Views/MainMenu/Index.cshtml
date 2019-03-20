@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HiveProject.Viewmodels.GetUsersViewModel>
+﻿@model IEnumerable<HiveProject.Viewmodels.UsersViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -59,7 +59,7 @@
 {
     <script>
         $(document).ready(function () {
-            $("#users .js-like").on("click", function () {
+            $("#users ").on("click",".js-like", function () {
                 var button = $(this);
                 $.ajax({
                     method: "POST",
@@ -70,7 +70,7 @@
                     }
                 });
             });
-            $("#users .js-dislike").on("click", function () {
+            $("#users ").on("click",".js-dislike", function () {
                 var button = $(this);
                 $.ajax({
                     method: "POST",
