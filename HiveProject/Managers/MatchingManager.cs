@@ -14,12 +14,71 @@ namespace HiveProject.Managers
     {
         private string _currentLoggedUser { get; set; }
 
+
         public MatchingManager()
         {
             _currentLoggedUser = HttpContext.Current.User.Identity.GetUserId();
         }
 
+
+        public async Task<List<GetUsersViewModel>> GetUsersAsync()
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var returnUsers = await db.Users
+                                    .Where(t => t.Id != _currentLoggedUser && !db.Likes
+                                    .Where(u => u.SenderId == _currentLoggedUser && u.ReceiverId == t.Id).Any())
+                                    .Select(g => new GetUsersViewModel
+                                    {
+                                        Id = g.Id,
+                                        Thumbnail = g.Thumbnail,
+                                        Age = g.Age,
+                                        Gender = g.UserGender,
+                                        Username = g.UserName
+                                    })
+                                    .ToListAsync();
+
+                return returnUsers;
+            }
+        }
+
+        // Gets the id of the user that you liked
+        public async Task AddLikeAndMatch(string id, bool like)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var addLike = db.Likes.Add(new Likes
+                {
+                    SenderId = _currentLoggedUser,
+                    ReceiverId = id,
+                    Like = like
+                });
+
+                if (await db.Likes.Where(x => x.SenderId == id && x.ReceiverId == _currentLoggedUser && x.Like == true).AnyAsync())
+                {
+                    db.Matches.Add(new Matches
+                    {
+                        MyUserId = _currentLoggedUser,
+                        MatchedUserId = id,
+                        SeenByMyUser = false
+                    });
+                    db.Matches.Add(new Matches
+                    {
+                        MyUserId = id,
+                        MatchedUserId = _currentLoggedUser,
+                        SeenByMyUser = false
+                    });
+                }
+
+                await db.SaveChangesAsync();
+            }
+        }
+
+        
         // Calculates the matches whenever is called.
+
+
+        // NOT USED AT THE MOMENT
         public async Task AsyncMatching()
         {
             var myLikes = new List<string>();
@@ -77,29 +136,23 @@ namespace HiveProject.Managers
             }
         }
 
-        public async Task<List<MatchingViewModel>> AsyncReturnMatches()
+        public async Task<List<GetUsersViewModel>> ReturnMatchesAsync()
         {
-            var matches = new List<Matches>();
-            var matchingModel = new List<MatchingViewModel>();
-
             using (var db = new ApplicationDbContext())
             {
-                matches = await db.Matches.Include(y => y.MatchedUser2).Where(x => x.MyUserId == _currentLoggedUser).ToListAsync();
+                var matches = await db.Matches.Include(y => y.MatchedUser2).Where(x => x.MyUserId == _currentLoggedUser)
+                                            .Select(g => new GetUsersViewModel
+                                            {
+                                                Id = g.MatchedUser2.Id,
+                                                Thumbnail = g.MatchedUser2.Thumbnail,
+                                                Age = g.MatchedUser2.Age,
+                                                Gender = g.MatchedUser2.UserGender,
+                                                Username = g.MatchedUser2.UserName
+                                            })
+                                            .Distinct()
+                                            .ToListAsync();
+                return matches;
             }
-
-            foreach (var user in matches)
-            {
-                matchingModel.Add(new MatchingViewModel
-                {
-                    Id = user.MatchedUser2.Id,
-                    Thumbnail = user.MatchedUser2.Thumbnail,
-                    Age = user.MatchedUser2.Age,
-                    Gender = user.MatchedUser2.UserGender,
-                    Username = user.MatchedUser2.UserName
-                });
-            }
-
-            return matchingModel;
         }
     }
 }

@@ -16,9 +16,12 @@ namespace HiveProject.Controllers
     [Authorize]
     public class MainMenuController : Controller
     {
-        public ActionResult Index()
+
+
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var getUsers =await new MatchingManager().GetUsersAsync();
+            return View(getUsers);
         }
 
 
@@ -61,8 +64,8 @@ namespace HiveProject.Controllers
         public async Task<ActionResult> Matching()
         {
             MatchingManager manager = new MatchingManager();
-            await manager.AsyncMatching();
-            var matches = await manager.AsyncReturnMatches();
+           // await manager.AsyncMatching();
+            var matches = await manager.ReturnMatchesAsync();
             return View(matches);
         }
 

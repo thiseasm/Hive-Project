@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HiveProject.Viewmodels
 {
-    public class MatchingViewModel
+    public class GetUsersViewModel
     {
         public string Id { get; set; }
 
