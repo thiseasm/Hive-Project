@@ -22,10 +22,6 @@ namespace HiveProject
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/map").Include(
-                    "~/Scripts/leaflet/leaflet.js",
-                    "~/Scripts/hive.map.interaction.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));            

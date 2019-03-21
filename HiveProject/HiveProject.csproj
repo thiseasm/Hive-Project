@@ -177,6 +177,7 @@
     <Compile Include="Controllers\InteractionController.cs" />
     <Compile Include="Controllers\MainMenuController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,7 +260,6 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\hive.map.interaction.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -339,6 +339,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Interaction\" />
+    <Folder Include="Views\Map\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

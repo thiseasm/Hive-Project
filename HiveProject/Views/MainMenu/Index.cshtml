@@ -5,7 +5,7 @@
 }
 <head>
     @Styles.Render("~/Scripts/leaflet/leaflet.css")
-    @Scripts.Render("~/bundles/map")
+    @Scripts.Render("~/Scripts/leaflet/leaflet.js")
 
 
 
@@ -17,23 +17,48 @@
 
     <script>
 
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (location) {
+                    var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
-        var coordinates = getLocation();
-        if (typeof coordinates === 'string') {
-            alert(coordinates);
+                    var mymap = L.map('mapid').setView(latlng, 13);
+
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidGhpc2Vhc20iLCJhIjoiY2p0ZDNrZDUwMHZ0ejQzcWlxb3BrdDV3cCJ9.2drjw4y3oUVkXhb3qNoFAg', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox.streets'
+                    }).addTo(mymap);
+
+
+                    var marker = L.marker(latlng).addTo(mymap);
+
+                },
+                showError,
+                { timeout: 10000 });
+
+
+            } else {
+                return undefined;
+            }
+
+
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        alert("User denied the request for Geolocation.");
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Location information is unavailable.");
+                    case error.TIMEOUT:
+                        alert("The request to get user location timed out.");
+                    case error.UNKNOWN_ERROR:
+                        alert("An unknown error occurred.");
+                }
+            }
         }
-        else {
-            var mymap = L.map('mapid').setView([coordinates], 13);
 
-            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidGhpc2Vhc20iLCJhIjoiY2p0ZDNrZDUwMHZ0ejQzcWlxb3BrdDV3cCJ9.2drjw4y3oUVkXhb3qNoFAg', {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                maxZoom: 18,
-                id: 'mapbox.streets'
-            }).addTo(mymap);
+        getLocation();
 
-
-            var marker = L.marker([coordinates]).addTo(mymap);
-        }
     </script>
 
 </body>
