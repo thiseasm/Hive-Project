@@ -1,4 +1,5 @@
-﻿using HiveProject.Models;
+﻿
+using HiveProject.Models;
 using HiveProject.Viewmodels;
 using Microsoft.AspNet.Identity;
 using System;

@@ -24,7 +24,7 @@ namespace HiveProject.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.CurrentLocationId)
                 .Index(t => t.CurrentLocationId);
             
-            DropTable("dbo.Matches");
+           DropTable("dbo.Matches");
         }
         
         public override void Down()
