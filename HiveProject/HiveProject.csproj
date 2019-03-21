@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201903181814080_RemovingPreferencesAndFixingLocationTable.Designer.cs">
       <DependentUpon>201903181814080_RemovingPreferencesAndFixingLocationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903211356474_fixingDatabaseBugs.cs" />
+    <Compile Include="Migrations\201903211356474_fixingDatabaseBugs.Designer.cs">
+      <DependentUpon>201903211356474_fixingDatabaseBugs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903181814080_RemovingPreferencesAndFixingLocationTable.resx">
       <DependentUpon>201903181814080_RemovingPreferencesAndFixingLocationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211356474_fixingDatabaseBugs.resx">
+      <DependentUpon>201903211356474_fixingDatabaseBugs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
