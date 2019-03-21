@@ -33,7 +33,7 @@ namespace HiveProject.Controllers
 
 
         // GET: MainMenu
-        public ActionResult Profile()
+        public ActionResult Profiles()
         {
             var profile = new ProfileViewModel();
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -46,6 +46,20 @@ namespace HiveProject.Controllers
                 }
             }
             return View(profile);
+        }
+
+        [HttpGet]
+        [WebMethod]
+        public async Task< JsonResult> GetPic()
+        {
+            string currentuser = User.Identity.GetUserId();
+            using (var db = new ApplicationDbContext())
+            {
+                var currentUser = await db.Users.SingleOrDefaultAsync(z => z.Id == currentuser);
+                var thumbnail = currentUser.Thumbnail;
+                thumbnail = "/Content/Images/" + thumbnail;
+                return Json(thumbnail,JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
@@ -64,7 +78,7 @@ namespace HiveProject.Controllers
                     context.SaveChanges();
                 }
             }
-            return RedirectToAction("Profile");
+            return RedirectToAction("Profiles");
         }
 
 

@@ -310,7 +310,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\MainMenu\Profile.cshtml" />
+    <Content Include="Views\MainMenu\Profiles.cshtml" />
     <Content Include="Views\Manage\ChangeUsername.cshtml" />
     <Content Include="Views\MainMenu\Matching.cshtml" />
     <Content Include="Views\MainMenu\Index.cshtml" />
