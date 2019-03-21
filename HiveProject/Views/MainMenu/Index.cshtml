@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<HiveProject.Viewmodels.UsersViewModel>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,80 @@
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="users" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thumbnail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            Like
+        </th>
+        <th>
+            Dislike
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Username)
+
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Thumbnail)*@
+                <img height="50" src="~/Content/Images/@Url.Content(item.Thumbnail)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <button data-user-id="@item.Id" class="btn-link js-like">Like</button>
+            </td>
+            <td>
+                <button data-user-id="@item.Id" class="btn-link js-dislike">Dislike</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#users ").on("click",".js-like", function () {
+                var button = $(this);
+                $.ajax({
+                    method: "POST",
+                    async: true,
+                    url: "/MainMenu/AddLike/" + button.attr("data-user-id"),
+                    success: function () {
+                        button.parents("tr").remove();
+                    }
+                });
+            });
+            $("#users ").on("click",".js-dislike", function () {
+                var button = $(this);
+                $.ajax({
+                    method: "POST",
+                    async: true,
+                    url: "/MainMenu/AddDislike/" + button.attr("data-user-id"),
+                    success: function () {
+                        button.parents("tr").remove();
+                    }
+                });
+            })
+        });
+    </script>
+}

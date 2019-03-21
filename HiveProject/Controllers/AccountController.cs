@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HiveProject.Models;
 using System.IO;
+using System.Data.Entity;
 
 namespace HiveProject.Controllers
 {
@@ -77,7 +78,7 @@ namespace HiveProject.Controllers
             ApplicationUser user = null;
             using (var context = new ApplicationDbContext())
             {
-                user = context.Users.Single(u => u.Email.Equals(model.Email));
+                user = await context.Users.FirstOrDefaultAsync(u => u.Email.Equals(model.Email));
             }
             if (user != null)
             {
