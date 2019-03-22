@@ -6,6 +6,7 @@
 <head>
     @Styles.Render("~/Scripts/leaflet/leaflet.css")
     @Scripts.Render("~/Scripts/leaflet/leaflet.js")
+    @Scripts.Render("~/bundles/jquery")
 
 
 
@@ -21,20 +22,7 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (location) {
                     var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-
-                    async function SaveLocation(latlng) {
-                        const urlToSendRequest = "https://" + window.location.host + "/permission/" + userId;
-                        console.log(userId);
-                        await fetch(urlToSendRequest,
-                            {
-                                method: 'POST',
-                                credentials: "same-origin",
-                                headers: {
-                                    'Accept': 'application/json',
-                                    'Content-Type': 'application/json'
-                                }
-                            });
-                    }
+                    console.log(latlng);
 
                     var mymap = L.map('mapid').setView(latlng, 13);
 
@@ -44,8 +32,15 @@
                         id: 'mapbox.streets'
                     }).addTo(mymap);
 
-
                     var marker = L.marker(latlng).addTo(mymap);
+                    var url = window.location.protocol+"//" + window.location.host + "/Map/SaveLocation";
+
+                    $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude }, function (data) {
+                    }).done(function (data) {
+                        console.log("success");
+                    }).fail(function (e) {
+                        console.log(e.status);
+                    });
 
                 },
                 showError,

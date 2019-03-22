@@ -10,14 +10,14 @@ namespace HiveProject.Controllers
     public class MapController : Controller
     {
         [HttpPost]
-        public void SaveLocation(List<decimal> coords)
+        public void SaveLocation(decimal lat, decimal lng)
         {
             var thisUserId = User.Identity.GetUserId();
 
             Location location = new Location()
             {
-                Latitude = coords[0],
-                Longitude = coords[1],
+                Latitude = lat,
+                Longitude = lng,
                 Id = thisUserId
             };
 
