@@ -50,7 +50,7 @@ namespace HiveProject.Controllers
 
         [HttpGet]
         [WebMethod]
-        public async Task< JsonResult> GetPic()
+        public async Task<JsonResult> GetPic()
         {
             string currentuser = User.Identity.GetUserId();
             using (var db = new ApplicationDbContext())
@@ -58,7 +58,7 @@ namespace HiveProject.Controllers
                 var currentUser = await db.Users.SingleOrDefaultAsync(z => z.Id == currentuser);
                 var thumbnail = currentUser.Thumbnail;
                 thumbnail = "/Content/Images/" + thumbnail;
-                return Json(thumbnail,JsonRequestBehavior.AllowGet);
+                return Json(thumbnail, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -66,8 +66,18 @@ namespace HiveProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditProfilePic(ApplicationUser user, HttpPostedFileBase Avatar)
         {
+            var allowedExtensions = new[] {
+            ".Jpg", ".png", ".jpg", "jpeg" };
+
             if (Avatar != null)
             {
+                var getExtension = Path.GetExtension(Avatar.FileName);
+                if (!allowedExtensions.Contains(getExtension))
+                {
+                    TempData["Error"] = "Not a supported extension,try .Jpg /.png/.jpg/.jpeg";
+                    return RedirectToAction("Profiles");
+                }
+
                 user.Thumbnail = Path.GetFileName(user.Avatar.FileName);
                 string fileName = Path.Combine(Server.MapPath("~/Content/Images/"), user.Thumbnail);
                 Avatar.SaveAs(fileName);
