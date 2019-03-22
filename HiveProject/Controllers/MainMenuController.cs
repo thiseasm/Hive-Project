@@ -32,13 +32,12 @@ namespace HiveProject.Controllers
         }
 
 
-        // GET: MainMenu
-        public ActionResult Profiles()
+        public async Task<ActionResult> Profiles()
         {
             var profile = new ProfileViewModel();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                var user =await db.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 if (user != null)
                 {
                     profile.Id = user.Id;
