@@ -41,6 +41,7 @@ namespace HiveProject.Models
         public virtual CurrentLocation Location { get; set; }
 
 
+        public int Radius { get; set; }
 
         public enum Gender
         {
@@ -66,6 +67,7 @@ namespace HiveProject.Models
         }
 
         public virtual DbSet<Likes> Likes { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<CurrentLocation> CurrentLocations { get; set; }
 
         public virtual DbSet<Matches> Matches { get; set; }
