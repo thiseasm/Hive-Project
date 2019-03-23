@@ -313,7 +313,7 @@
     <Content Include="Views\MainMenu\Profiles.cshtml" />
     <Content Include="Views\Manage\ChangeUsername.cshtml" />
     <Content Include="Views\MainMenu\Matching.cshtml" />
-    <Content Include="Views\MainMenu\Index.cshtml" />
+    <Content Include="Views\MainMenu\Index22.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

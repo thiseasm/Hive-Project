@@ -25,7 +25,7 @@ namespace HiveProject.Controllers
         }
 
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index22()
         {
             var getUsers = await new MatchingManager().GetUsersAsync();
             return View(getUsers);
