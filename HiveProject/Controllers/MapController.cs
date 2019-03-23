@@ -12,6 +12,8 @@ namespace HiveProject.Controllers
         [HttpPost]
         public void SaveLocation(decimal lat, decimal lng)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            
             var thisUserId = User.Identity.GetUserId();
 
             Location location = new Location()
@@ -21,11 +23,27 @@ namespace HiveProject.Controllers
                 Id = thisUserId
             };
 
-            using (ApplicationDbContext db = new ApplicationDbContext())
+            bool inDatabase = db.Locations.Any(u => u.Id == thisUserId);
+            if (inDatabase == false)
             {
-                var x = db.Locations.Add(location);
+                var saveLocationQuery = db.Locations.Add(location);
                 db.SaveChanges();
             }
+            else
+            {
+                var getLocation = from loc in db.Locations
+                                  where loc.Id == thisUserId
+                                  select loc;
+                foreach (Location position in getLocation)
+                {
+                    position.Latitude = location.Latitude;
+                    position.Longitude = location.Longitude;
+                }
+
+                db.SaveChanges();
+            }
+            
+            
         }
     }
 }

@@ -22,7 +22,6 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (location) {
                     var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-                    console.log(latlng);
 
                     var mymap = L.map('mapid').setView(latlng, 13);
 
@@ -33,7 +32,7 @@
                     }).addTo(mymap);
 
                     var marker = L.marker(latlng).addTo(mymap);
-                    var url = window.location.protocol+"//" + window.location.host + "/Map/SaveLocation";
+                    var url = window.location.protocol + "//" + window.location.host + "/Map/SaveLocation";
 
                     $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude }, function (data) {
                     }).done(function (data) {
