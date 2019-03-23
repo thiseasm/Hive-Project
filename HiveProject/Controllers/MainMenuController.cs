@@ -25,6 +25,11 @@ namespace HiveProject.Controllers
             _Manager = new MatchingManager();
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
 
         public async Task<ActionResult> Index22()
         {

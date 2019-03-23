@@ -38,8 +38,8 @@ namespace HiveProject.Models
 
         [InverseProperty("MatchedUser2")]
         public virtual ICollection<Matches> Matches2 { get; set; }
-        public virtual CurrentLocation Location { get; set; }
 
+        public virtual Location CurrentLocation { get; set; }
 
         public int Radius { get; set; }
 
@@ -68,8 +68,6 @@ namespace HiveProject.Models
 
         public virtual DbSet<Likes> Likes { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<CurrentLocation> CurrentLocations { get; set; }
-
         public virtual DbSet<Matches> Matches { get; set; }
 
         public static ApplicationDbContext Create()
