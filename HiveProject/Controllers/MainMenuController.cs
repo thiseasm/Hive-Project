@@ -26,20 +26,19 @@ namespace HiveProject.Controllers
         }
 
 
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index22()
         {
             var getUsers = await new MatchingManager().GetUsersAsync();
             return View(getUsers);
         }
 
 
-        // GET: MainMenu
-        public ActionResult Profile()
+        public async Task<ActionResult> Profiles()
         {
             var profile = new ProfileViewModel();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var user = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                var user =await db.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 if (user != null)
                 {
                     profile.Id = user.Id;
@@ -49,12 +48,36 @@ namespace HiveProject.Controllers
             return View(profile);
         }
 
+        [HttpGet]
+        [WebMethod]
+        public async Task<JsonResult> GetPic()
+        {
+            string currentuser = User.Identity.GetUserId();
+            using (var db = new ApplicationDbContext())
+            {
+                var currentUser = await db.Users.SingleOrDefaultAsync(z => z.Id == currentuser);
+                var thumbnail = currentUser.Thumbnail;
+                thumbnail = "/Content/Images/" + thumbnail;
+                return Json(thumbnail, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditProfilePic(ApplicationUser user, HttpPostedFileBase Avatar)
         {
+            var allowedExtensions = new[] {
+            ".Jpg", ".png", ".jpg", "jpeg" };
+
             if (Avatar != null)
             {
+                var getExtension = Path.GetExtension(Avatar.FileName);
+                if (!allowedExtensions.Contains(getExtension))
+                {
+                    TempData["Error"] = "Not a supported extension,try .Jpg /.png/.jpg/.jpeg";
+                    return RedirectToAction("Profiles");
+                }
+
                 user.Thumbnail = Path.GetFileName(user.Avatar.FileName);
                 string fileName = Path.Combine(Server.MapPath("~/Content/Images/"), user.Thumbnail);
                 Avatar.SaveAs(fileName);
@@ -65,7 +88,7 @@ namespace HiveProject.Controllers
                     context.SaveChanges();
                 }
             }
-            return RedirectToAction("Profile");
+            return RedirectToAction("Profiles");
         }
 
 

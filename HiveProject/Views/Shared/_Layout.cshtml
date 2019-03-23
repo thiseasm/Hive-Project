@@ -23,7 +23,9 @@
             <div class="navbar-nav ml-auto">
                 @if (Request.IsAuthenticated)
                 {
-                    @Html.ActionLink("Profile", "Profile", "Mainmenu", new { area = "" }, new { @class = "navbar-brand" })
+                    <a href='@Url.Action("Profiles","MainMenu")'>
+                        <img id="myimage" class="rounded-circle" src="" height="48" width="48" />
+                    </a>
                 }
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year- My ASP.NET Application</p>
         </footer>
     </div>
 
@@ -46,5 +48,15 @@
 </html>
 
 <script>
-    
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/MainMenu/GetPic",
+            dataType: "json",
+            success: function (data) {
+                $("#myimage").attr('src', data);
+            }
+        });
+    });
 </script>
