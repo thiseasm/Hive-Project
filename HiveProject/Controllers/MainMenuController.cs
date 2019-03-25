@@ -31,6 +31,7 @@ namespace HiveProject.Controllers
             _Locator = new InteractionManager();
             var loggedUser = GetLoggedUser();
             IEnumerable<Location> nearbyLocations = _Locator.GetNearbyUsers(loggedUser);
+            ViewBag.nearby = nearbyLocations;
             return View();
         }
 
