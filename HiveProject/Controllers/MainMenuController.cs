@@ -19,6 +19,7 @@ namespace HiveProject.Controllers
     public class MainMenuController : Controller
     {
         private MatchingManager _Manager { get; set; }
+        private InteractionManager _Locator { get; set; }
 
         public MainMenuController()
         {
@@ -27,6 +28,9 @@ namespace HiveProject.Controllers
 
         public ActionResult Index()
         {
+            _Locator = new InteractionManager();
+            var loggedUser = GetLoggedUser();
+            IEnumerable<Location> nearbyLocations = _Locator.GetNearbyUsers(loggedUser);
             return View();
         }
 
@@ -120,5 +124,15 @@ namespace HiveProject.Controllers
             return Json(new { success = true });
         }
 
+        public ApplicationUser GetLoggedUser()
+        {
+            var thisUserId = User.Identity.GetUserId();
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            ApplicationUser thisUser = db.Users.
+                Where(u => u.Id == thisUserId).SingleOrDefault();
+
+            return thisUser;
+        }
     }
 }
