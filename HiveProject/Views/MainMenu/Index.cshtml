@@ -38,9 +38,9 @@
                     var marker = L.marker(latlng).addTo(mymap);
                     var url = window.location.protocol + "//" + window.location.host + "/Map/SaveLocation";
 
-                    $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude }, function (data) {
-                    }).done(function (data) {
-                        console.log("success");
+                    $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude })
+                       .done(function (data) {
+                        console.log(data);
                     }).fail(function (e) {
                         console.log(e.status);
                     });
@@ -80,8 +80,8 @@
                 }
             }
         }
-
-        getLocation();
+        $(document).ready(getLocation());
+        
 
 
     </script>

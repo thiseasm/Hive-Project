@@ -10,6 +10,7 @@ namespace HiveProject.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            
         }
 
         protected override void Seed(HiveProject.Models.ApplicationDbContext context)
