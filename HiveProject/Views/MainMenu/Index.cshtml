@@ -21,11 +21,6 @@
 
 
     <script>
-        $(document).ready(function () {
-            var locations = [];
-        @foreach(var item in ViewBag.nearby) {
-           <text>locations.push(["@item.Id.ToString()","@item.Latitude.ToString()","@item.Longitude.ToString()"]);</text>
-        }
 
         function getLocation() {
             if (navigator.geolocation) {
@@ -50,14 +45,21 @@
                         console.log(e.status);
                     });
 
+                    var locations = [];
+                    @foreach (var item in ViewBag.nearby)
+                    {
+                        <text>locations.push(["@item.Id.ToString()", @item.Latitude.ToString(), @item.Longitude.ToString()]);</text>
+                    }
+                       
+                    console.log(locations);
+                    locations.forEach(function (element) {
+                        marker = new L.marker([element[1], element[2]]).addTo(mymap);
+                    });
+
+                    
                 },
                 showError,
                     { timeout: 10000 });
-
-                locations.forEach(function (element) {
-                    marker = new L.marker(element[1], element[2]).addTo(mymap);
-                });
-
 
 
             } else {
@@ -80,7 +82,7 @@
         }
 
         getLocation();
-        
+
 
     </script>
 
