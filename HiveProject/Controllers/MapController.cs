@@ -57,5 +57,17 @@ namespace HiveProject.Controllers
                 Longitude = l.Longitude
             }).ToArray());
         }
+
+        [HttpPost]
+        public void GetLoggedUser(string UserId)
+        {            
+            ApplicationUser thisUser = new ApplicationUser();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                thisUser = db.Users.
+                    Where(u => u.Id == UserId).SingleOrDefault();
+            }
+
+        }
     }
 }

@@ -35,15 +35,42 @@
                         id: 'mapbox.streets'
                     }).addTo(mymap);
 
-                    var marker = L.marker(latlng).addTo(mymap);
+                    var marker = L.marker(latlng)
+                        .bindPopup('This is your current location.')
+                        .addTo(mymap);
                     var url = window.location.protocol + "//" + window.location.host + "/Map/SaveLocation";
 
                     $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude })
                         .done(function (nearbyLocations) {
+                            var markers = {};
                             nearbyLocations.forEach(function (element) {
-                                marker = new L.marker([element.Latitude, element.Longitude]).addTo(mymap);
+                                markers[element.Id] = new L.marker([element.Latitude, element.Longitude], { userId: element.id })
+                                    .addTo(mymap);
+                                markers[element.Id].on('click', function (e) {
+                                    let url = window.location.protocol + "//" + window.location.host + "/Map/GetLoggedUser";
+                                    let id = element.Id;
+                                    debugger;
+                                    $.post(url, { UserId: id })
+                                        .done(function (data) {
+                                        });
+                                });
                             })
-                        });                                
+
+                            //$('.leaflet-marker-icon').on('click', function (e) {
+                            //    let url = window.location.protocol + "//" + window.location.host + "/Map/GetLoggedUser";
+                            //    let id = this.options.userId;
+                            //    debugger;
+                            //    $.post(url, { UserId: id })
+                            //        .done(function (data) {
+                            //            console.log("success");
+                            //        }).fail(function (data) {
+                            //            console.log(data.status);
+                            //        });
+                            //});
+                        });
+
+
+ 
                     
                 },
                 showError,
@@ -69,7 +96,7 @@
             }
         }
         $(document).ready(getLocation());
-        
+
 
 
     </script>

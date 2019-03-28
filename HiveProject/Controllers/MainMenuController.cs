@@ -121,15 +121,5 @@ namespace HiveProject.Controllers
             return Json(new { success = true });
         }
 
-        public ApplicationUser GetLoggedUser()
-        {
-            var thisUserId = User.Identity.GetUserId();
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            ApplicationUser thisUser = db.Users.
-                Where(u => u.Id == thisUserId).SingleOrDefault();
-
-            return thisUser;
-        }
     }
 }
