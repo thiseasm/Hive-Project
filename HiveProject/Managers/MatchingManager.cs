@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -21,24 +22,19 @@ namespace HiveProject.Managers
         }
 
 
-        public async Task<List<UsersViewModel>> GetUsersAsync()
+        public async Task<List<UsersInRadius>> GetUsersAsync(string id,decimal lat,decimal lng,int radius)
         {
+
             using (var db = new ApplicationDbContext())
             {
-                var returnUsers = await db.Users
-                                    .Where(t => t.Id != _currentLoggedUser && !db.Likes
-                                    .Where(u => u.SenderId == _currentLoggedUser && u.ReceiverId == t.Id).Any())
-                                    .Select(g => new UsersViewModel
-                                    {
-                                        Id = g.Id,
-                                        Thumbnail = g.Thumbnail,
-                                        Age = g.Age,
-                                        Gender = g.UserGender,
-                                        Username = g.UserName
-                                    })
-                                    .ToListAsync();
+                var guid = new SqlParameter("@Id", id);
+                var latitude = new SqlParameter("@Lat",lat);
+                var longitude = new SqlParameter("@Long", lng);
+                var range = new SqlParameter("@Range", radius);
 
-                return returnUsers;
+                var result = await db.Database.SqlQuery<UsersInRadius>("GetUsers @Id,@Lat,@Long,@Range", guid, latitude, longitude, range).ToListAsync();
+
+                return result;
             }
         }
 
