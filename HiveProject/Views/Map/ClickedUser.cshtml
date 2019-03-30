@@ -1,14 +1,43 @@
 ﻿@model HiveProject.Viewmodels.UsersViewModel
 
-<div class="card" style="width: 18rem ; height: 500px" >
+<div class="card" style="width: 18rem ; height: 500px; background:#F5F0DF">
     <img src='~/Content/Images/@Model.Thumbnail' class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">@Html.DisplayFor(model => model.Username),@Html.DisplayFor(model => model.Age)</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary">Like</button>
-        <button type="button" class="btn btn-secondary">Dislike</button>
+        <button id="like" type="button" class="btn btn-outline-success">Like</button>
+        <button id="dislike" type="button" class="btn btn-outline-danger">Dislike</button>
     </div>
 </div>
 
+@*@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#like").on("click", function () {
+                var userId = @Model.Id;
+                $.ajax({
+                    method: "POST",
+                    async: true,
+                    url: "/MainMenu/AddLike/" + userId,
+                    success: function () {
+                        $('.btn-group').html('Liked');
+                    }
+                });
+            });
+            $("#dislike").on("click", function () {
+                var userId = @Model.Id;
+                $.ajax({
+                    method: "POST",
+                    async: true,
+                    url: "/MainMenu/AddDislike/" + userId,
+                    success: function () {
+                        $('.btn-group').html('Disliked');
+                    }
+                });
+            })
+        });
+    </script>
+}*@
