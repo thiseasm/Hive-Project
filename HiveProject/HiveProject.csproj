@@ -239,6 +239,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\bee.png" />
+    <Content Include="Content\main-page.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -292,7 +293,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -342,11 +345,11 @@
     <Content Include="Scripts\leaflet\leaflet.js.map" />
     <Content Include="Views\MainMenu\Index22.cshtml" />
     <Content Include="Views\MainMenu\Index.cshtml" />
+    <Content Include="Views\Map\ClickedUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Interaction\" />
-    <Folder Include="Views\Map\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

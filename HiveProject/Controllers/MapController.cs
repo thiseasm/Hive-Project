@@ -1,6 +1,6 @@
 ﻿using HiveProject.Models;
 using System;
-using System.Collections.Generic;
+using HiveProject.Viewmodels;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
@@ -59,7 +59,7 @@ namespace HiveProject.Controllers
         }
 
         [HttpPost]
-        public void GetLoggedUser(string UserId)
+        public ActionResult ClickedUser(string UserId)
         {            
             ApplicationUser thisUser = new ApplicationUser();
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -67,7 +67,16 @@ namespace HiveProject.Controllers
                 thisUser = db.Users.
                     Where(u => u.Id == UserId).SingleOrDefault();
             }
+            UsersViewModel clicked = new UsersViewModel()
+            {
+                Id = thisUser.Id,
+                Age = thisUser.Age,
+                Gender = thisUser.UserGender,
+                Thumbnail = thisUser.Thumbnail,
+                Username = thisUser.UserName
+            };
 
+            return PartialView(clicked);
         }
     }
 }

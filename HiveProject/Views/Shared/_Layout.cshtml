@@ -27,7 +27,7 @@
                 @if (Request.IsAuthenticated)
                 {
                     <a href='@Url.Action("Profiles","MainMenu")'>
-                        <img id="myimage" class="rounded-circle" src="" height="48" width="48" />
+                        <img id="myimage" class="rounded-circle" src="" height="40" width="48" />
                     </a>
                 }
                 @Html.Partial("_LoginPartial")
@@ -40,7 +40,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year- My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year- Hive</p>
         </footer>
     </div>
 

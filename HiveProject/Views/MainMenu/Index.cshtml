@@ -5,19 +5,17 @@
 }
 <head>
     @Styles.Render("~/Scripts/leaflet/leaflet.css")
+    @Styles.Render("~/Content/main-page.css")
     @Scripts.Render("~/Scripts/leaflet/leaflet.js")
     @Scripts.Render("~/bundles/jquery")
 
-    <script>
-        
- 
-
-    </script>
-
 </head>
 <body>
-    <h2>Index</h2>
-    <div id="mapid" style="height: 350px; "></div>
+    <section class="container">
+        <div id="mapid"></div>
+        <div id="clickedUser">SE GAMAO</div>
+    </section>
+    
 
 
     <script>
@@ -47,30 +45,16 @@
                                 markers[element.Id] = new L.marker([element.Latitude, element.Longitude], { userId: element.id })
                                     .addTo(mymap);
                                 markers[element.Id].on('click', function (e) {
-                                    let url = window.location.protocol + "//" + window.location.host + "/Map/GetLoggedUser";
+                                    let url = window.location.protocol + "//" + window.location.host + "/Map/ClickedUser";
                                     let id = element.Id;
-                                    debugger;
                                     $.post(url, { UserId: id })
                                         .done(function (data) {
+                                            $('#clickedUser').html(data);
                                         });
                                 });
                             })
 
-                            //$('.leaflet-marker-icon').on('click', function (e) {
-                            //    let url = window.location.protocol + "//" + window.location.host + "/Map/GetLoggedUser";
-                            //    let id = this.options.userId;
-                            //    debugger;
-                            //    $.post(url, { UserId: id })
-                            //        .done(function (data) {
-                            //            console.log("success");
-                            //        }).fail(function (data) {
-                            //            console.log(data.status);
-                            //        });
-                            //});
                         });
-
-
- 
                     
                 },
                 showError,
