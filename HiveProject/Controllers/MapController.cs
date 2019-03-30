@@ -4,6 +4,7 @@ using HiveProject.Viewmodels;
 using System.Linq;
 using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
+using HiveProject.Managers;
 
 namespace HiveProject.Controllers
 {
@@ -12,7 +13,8 @@ namespace HiveProject.Controllers
         [HttpPost]
         public ActionResult SaveLocation(decimal lat, decimal lng)
         {
-            var locations = Enumerable.Empty<Location>();
+            var manager = new MatchingManager();
+            var locations = Enumerable.Empty<UsersInRadius>();
             var thisUserId = User.Identity.GetUserId();
             using (var db = new ApplicationDbContext())
             {
@@ -43,19 +45,22 @@ namespace HiveProject.Controllers
 
                 db.SaveChanges();
             }
+            //TODO add radius
+            locations = manager.GetUsersAsync(thisUserId, lat, lng, 1000);
 
-            using (var db = new ApplicationDbContext())
-            {
-                db.Configuration.LazyLoadingEnabled = false;
-                locations = db.Locations.Where(l => l.Id != thisUserId).ToList();
-            }
+            return Json(locations);
+            //using (var db = new ApplicationDbContext())
+            //{
+            //    db.Configuration.LazyLoadingEnabled = false;
+            //    locations = db.Locations.Where(l => l.Id != thisUserId).ToList();
+            //}
 
-            return Json(locations.Select(l => new Location()
-            {
-                Id = l.Id,
-                Latitude = l.Latitude,
-                Longitude = l.Longitude
-            }).ToArray());
+            //return Json(locations.Select(l => new Location()
+            //{
+            //    Id = l.Id,
+            //    Latitude = l.Latitude,
+            //    Longitude = l.Longitude
+            //}).ToArray());
         }
 
         [HttpPost]

@@ -22,7 +22,7 @@ namespace HiveProject.Managers
         }
 
 
-        public async Task<List<UsersInRadius>> GetUsersAsync(string id,decimal lat,decimal lng,int radius)
+        public IEnumerable<UsersInRadius> GetUsersAsync(string id,decimal lat,decimal lng,int radius)
         {
 
             using (var db = new ApplicationDbContext())
@@ -32,9 +32,10 @@ namespace HiveProject.Managers
                 var longitude = new SqlParameter("@Long", lng);
                 var range = new SqlParameter("@Range", radius);
 
-                var result = await db.Database.SqlQuery<UsersInRadius>("GetUsers @Id,@Lat,@Long,@Range", guid, latitude, longitude, range).ToListAsync();
+                var result = db.Database.SqlQuery<UsersInRadius>("GetUsers @Id,@Lat,@Long,@Range", guid, latitude, longitude, range).ToArray();
 
                 return result;
+
             }
         }
 
