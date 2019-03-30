@@ -34,8 +34,10 @@ namespace HiveProject.Controllers
 
         public async Task<ActionResult> Index22()
         {
-            var getUsers = await new MatchingManager().GetUsersAsync();
-            return View(getUsers);
+            var getUsers = await new MatchingManager().GetUsersAsync("3256e5eb-4a92-4372-90f0-abfa7b173c6f", 37.94m, 23.71m,50);
+
+            return Json(getUsers, JsonRequestBehavior.AllowGet);
+            //return View(getUsers);
         }
 
 
