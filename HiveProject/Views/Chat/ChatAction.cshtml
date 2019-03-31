@@ -156,3 +156,52 @@
     </div>
 </body>
 </html>
+
+
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.0.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/Chat.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/config.js"></script>
+    <script src="~/Scripts/emoji-picker.js"></script>
+    <script src="~/Scripts/jquery-emojiarea.js"></script>
+    <script src="~/Scripts/util.js"></script>
+    <script src="~/Scripts/emoji-picker.js"></script>
+    <script>
+        async function SetReceiver(userId, userName, userAvatar) {
+            document.getElementById("ReceiverName").innerText = userName;
+            document.getElementById("ReceiverAvatar").src = userAvatar;
+            document.getElementById("receiverId").innerHTML = userId;
+            document.getElementById("receiverName").innerHTML = userName;
+        }
+    </script>
+    <script>
+        $(function () {
+            // Initializes and creates emoji set from sprite sheet
+            window.emojiPicker = new EmojiPicker({
+                emojiable_selector: '[data-emojiable=true]',
+                assetsPath: '../Content/img',
+                popupButtonClasses: 'fa fa-smile-o'
+            });
+            // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+            // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+            // It can be called as many times as necessary; previously converted input fields will not be converted again
+            window.emojiPicker.discover();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#action_menu_btn').click(function () {
+                $('.action_menu').toggle();
+            });
+        });
+    </script>
+    <script>
+        function resetChat() {
+            $("div").empty();
+            $("span").empty();
+        }
+    </script>
+}
