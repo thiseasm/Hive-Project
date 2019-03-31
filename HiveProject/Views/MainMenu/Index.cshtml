@@ -50,7 +50,31 @@
                                     $.post(url, { UserId: id })
                                         .done(function (data) {
                                             $('#clickedUser').html(data);
+
+                                            $("#like").on("click", function () {
+                                                $.ajax({
+                                                    method: "POST",
+                                                    async: true,
+                                                    url: "/MainMenu/AddLike/" + element.Id,
+                                                    success: function () {
+                                                        $('.btn-group').html('Liked');
+                                                    }
+                                                });
+                                            });
+
+                                            $("#dislike").on("click", function () {
+                                                $.ajax({
+                                                    method: "POST",
+                                                    async: true,
+                                                    url: "/MainMenu/AddDislike/" + element.Id,
+                                                    success: function () {
+                                                        $('.btn-group').html('Disliked');
+                                                    }
+                                                });
+                                            });
                                         });
+
+                                    
                                 });
                             })
 
