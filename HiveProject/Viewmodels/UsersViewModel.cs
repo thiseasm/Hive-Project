@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HiveProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,15 @@ namespace HiveProject.Viewmodels
 
         public int Age { get; set; }
 
+
+        public ApplicationUser ActiveUser { get; set; }
+        public ApplicationUser Receiver { get; set; }
+
         public Models.ApplicationUser.Gender Gender { get; set; }
+
+        public string About  {get; set;}
+        
+        public string Location { get; set; }
 
     }
 }

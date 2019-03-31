@@ -262,8 +262,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chat.css" />
     <Content Include="Content\Images\bee.png" />
     <Content Include="Content\main-page.css" />
+    <Content Include="Content\UserView.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -374,9 +376,11 @@
     <Content Include="Views\MainMenu\Index.cshtml" />
     <Content Include="Views\Map\ClickedUser.cshtml" />
     <Content Include="Views\Chat\ChatAction.cshtml" />
+    <Content Include="Views\Chat\ChatProfiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ChatUserView\" />
     <Folder Include="Views\Interaction\" />
   </ItemGroup>
   <ItemGroup>

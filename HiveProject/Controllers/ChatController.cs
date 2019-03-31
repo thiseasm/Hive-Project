@@ -2,8 +2,10 @@
 using HiveProject.Managers;
 using HiveProject.MessageRepositories;
 using HiveProject.Models;
+using HiveProject.Viewmodels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -56,7 +58,23 @@ namespace HiveProject.Controllers
                 });
             }
 
-            [HttpPost]
+
+        public async Task<ActionResult> ChatProfiles()
+        {
+            var profile = new ProfileViewModel();
+
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                if (user != null)
+                {
+                    profile.Id = user.Id;
+                    profile.Thumbnail = user.Thumbnail;
+                }
+            }
+            return View(profile);
+        }
+
+        [HttpPost]
             public async Task MarkConversationRead(string fromId, string toId)
             {
                 await _messageRepo.SetMessagesAsRead(fromId, toId);

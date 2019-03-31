@@ -17,6 +17,10 @@ namespace HiveProject.Models
         public string ReceiverId { get; set; }
         public string ReceiverName { get; set; }
 
+
+        public ApplicationUser ActiveUser { get; set; }
+        public ApplicationUser Receiver { get; set; }
+
         public string Body { get; set; }
         public DateTime Date { get; set; }
 
