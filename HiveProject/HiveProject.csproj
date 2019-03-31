@@ -372,10 +372,10 @@
     <Content Include="Views\MainMenu\Index22.cshtml" />
     <Content Include="Views\MainMenu\Index.cshtml" />
     <Content Include="Views\Map\ClickedUser.cshtml" />
+    <Content Include="Views\Chat\ChatAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Chat\" />
     <Folder Include="Views\Interaction\" />
   </ItemGroup>
   <ItemGroup>
