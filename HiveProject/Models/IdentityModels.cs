@@ -69,6 +69,7 @@ namespace HiveProject.Models
         public virtual DbSet<Likes> Likes { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Matches> Matches { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
 
         public static ApplicationDbContext Create()
         {
