@@ -50,6 +50,19 @@
                                     $.post(url, { UserId: id })
                                         .done(function (data) {
                                             $('#clickedUser').html(data);
+                                            $('#like').on('click', function () {
+                                                
+                                                $.ajax({
+                                                    method: "post",
+                                                    async: true,
+                                                    url: "/mainmenu/addlike/" + element.Id,
+                                                    success: function () {
+                                                        mymap.removeLayer(markers[element.Id]);
+                                                        $('.btn-group').html('liked');
+                                                    }
+                                                    
+                                                });
+                                            });
                                         });
                                 });
                             })

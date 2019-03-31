@@ -12,32 +12,30 @@
     </div>
 </div>
 
-@*@section Scripts
-{
-    <script>
+
+    @*<script>
         $(document).ready(function () {
             $("#like").on("click", function () {
-                var userId = @Model.Id;
+                var userid = @model.id;
                 $.ajax({
-                    method: "POST",
+                    method: "post",
                     async: true,
-                    url: "/MainMenu/AddLike/" + userId,
+                    url: "/mainmenu/addlike/" + userid,
                     success: function () {
-                        $('.btn-group').html('Liked');
+                        $('.btn-group').html('liked');
                     }
                 });
             });
             $("#dislike").on("click", function () {
-                var userId = @Model.Id;
+                var userid = @model.id;
                 $.ajax({
-                    method: "POST",
+                    method: "post",
                     async: true,
-                    url: "/MainMenu/AddDislike/" + userId,
+                    url: "/mainmenu/adddislike/" + userid,
                     success: function () {
-                        $('.btn-group').html('Disliked');
+                        $('.btn-group').html('disliked');
                     }
                 });
             })
         });
-    </script>
-}*@
+    </script>*@
