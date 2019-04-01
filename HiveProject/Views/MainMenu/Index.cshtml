@@ -58,6 +58,7 @@
                                                     url: "/MainMenu/AddLike/" + element.Id,
                                                     success: function () {
                                                         $('.btn-group').html('Liked');
+                                                        mymap.removeLayer(marker[element.Id]);
                                                     }
                                                 });
                                             });
@@ -69,6 +70,7 @@
                                                     url: "/MainMenu/AddDislike/" + element.Id,
                                                     success: function () {
                                                         $('.btn-group').html('Disliked');
+                                                        mymap.removeLayer(marker[element.Id]);
                                                     }
                                                 });
                                             });
