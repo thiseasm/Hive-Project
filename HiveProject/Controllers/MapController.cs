@@ -11,8 +11,10 @@ namespace HiveProject.Controllers
     public class MapController : Controller
     {
         [HttpPost]
-        public ActionResult SaveLocation(decimal lat, decimal lng)
+        public ActionResult SaveLocation(string lat, string lng)
         {
+            var latitude = decimal.Parse(lat ?? "0", System.Globalization.CultureInfo.InvariantCulture);
+            var longitude = decimal.Parse(lng ?? "0", System.Globalization.CultureInfo.InvariantCulture);
             var manager = new MatchingManager();
             var locations = Enumerable.Empty<UsersInRadius>();
             var thisUserId = User.Identity.GetUserId();
@@ -21,8 +23,8 @@ namespace HiveProject.Controllers
 
                 Location location = new Location()
                 {
-                    Latitude = lat,
-                    Longitude = lng,
+                    Latitude = latitude,
+                    Longitude = longitude,
                     Id = thisUserId
                 };
 
@@ -46,7 +48,7 @@ namespace HiveProject.Controllers
                 db.SaveChanges();
             }
             //TODO add radius
-            locations = manager.GetUsersAsync(thisUserId, lat, lng, 1000);
+            locations = manager.GetUsersAsync(thisUserId, latitude, longitude, 1000);
 
             return Json(locations);
             //using (var db = new ApplicationDbContext())

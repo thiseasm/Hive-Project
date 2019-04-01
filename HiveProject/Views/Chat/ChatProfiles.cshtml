@@ -1,11 +1,9 @@
 ﻿
-
-
 <head>
-            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" >
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js" > </script >
-        <script src="//code.jquery.com/jquery-1.11.1.min.js" > </script >
-        <link rel="stylesheet" href="~/Content/UserView.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="~/Content/UserView.css" />
 </head>
 
 <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
@@ -17,7 +15,7 @@
             <div class="row coralbg white">
                 <div class="col-md-6 no-pad">
                     <div class="user-pad">
-                        <h3>Welcome back, </h3>
+                        <h2></h2>
                         <h4 class="white"><i class="fa fa-check-circle-o"></i> San Antonio, TX</h4>
                         <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4>
                         <button type="button" class="btn btn-labeled btn-info" href="#">
@@ -27,21 +25,21 @@
                 </div>
                 <div class="col-md-6 no-pad">
                     <div class="user-image">
-                        <img src="https://farm7.staticflickr.com/6163/6195546981_200e87ddaf_b.jpg" class="img-responsive thumbnail">
+                        @*<img src="~/Content/Images/@Model.Receiver.Thumbnail" class="img-responsive thumbnail">*@
                     </div>
                 </div>
             </div>
             <div class="row overview">
                 <div class="col-md-4 user-pad text-center">
-                 
+
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                 
-                
+
+
                 </div>
                 <div class="col-md-4 user-pad text-center">
-                    
-                   
+
+
                 </div>
             </div>
         </div>
@@ -53,7 +51,7 @@
                 <a href="#" class="btn btn-default">
                     <i class="fa fa-envelope-o fa-3x"></i>
                 </a>
-                
+
                 <a href="#" class="btn btn-default">
                     <i class="fa fa-cloud-upload fa-3x"></i>
                 </a>
@@ -103,7 +101,7 @@
                 </ul>
             </div>
 
-        
+
 
             <div class="user-menu-content">
                 <h2 class="text-center">
@@ -134,33 +132,33 @@
     <script src="~/Scripts/Chat.js"></script>
 
 
-<script>
+    <script>
 
-    $(document).ready(function () {
-        var $btnSets = $('#responsive'),
-            $btnLinks = $btnSets.find('a');
+        $(document).ready(function () {
+            var $btnSets = $('#responsive'),
+                $btnLinks = $btnSets.find('a');
 
-        $btnLinks.click(function (e) {
-            e.preventDefault();
-            $(this).siblings('a.active').removeClass("active");
-            $(this).addClass("active");
-            var index = $(this).index();
-            $("div.user-menu>div.user-menu-content").removeClass("active");
-            $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+            $btnLinks.click(function (e) {
+                e.preventDefault();
+                $(this).siblings('a.active').removeClass("active");
+                $(this).addClass("active");
+                var index = $(this).index();
+                $("div.user-menu>div.user-menu-content").removeClass("active");
+                $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+            });
         });
-    });
 
-    $(document).ready(function () {
-        $("[rel='tooltip']").tooltip();
+        $(document).ready(function () {
+            $("[rel='tooltip']").tooltip();
 
-        $('.view').hover(
-            function () {
-                $(this).find('.caption').slideDown(250); //.fadeIn(250)
-            },
-            function () {
-                $(this).find('.caption').slideUp(250); //.fadeOut(205)
-            }
-        );
-    });
+            $('.view').hover(
+                function () {
+                    $(this).find('.caption').slideDown(250); //.fadeIn(250)
+                },
+                function () {
+                    $(this).find('.caption').slideUp(250); //.fadeOut(205)
+                }
+            );
+        });
     </script>
 }

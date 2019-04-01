@@ -15,48 +15,48 @@ namespace HiveProject.Controllers
 {
     public class ChatController : Controller
     {
-        
-        
-            private readonly MatchingManager matchRepo;
-            private ApplicationDbContext _context;
-            private MessageRepository _messageRepo;
 
-            public ChatController()
+
+        private readonly MatchingManager matchRepo;
+        private ApplicationDbContext _context;
+        private MessageRepository _messageRepo;
+
+        public ChatController()
+        {
+            _messageRepo = new MessageRepository();
+            _context = new ApplicationDbContext();
+            matchRepo = new MatchingManager();
+        }
+
+        [Authorize]
+        public async Task<ActionResult> ChatAction()
+        {
+            ApplicationUser thisUser = _context.Users.Where(m => m.Id == m.Id).FirstOrDefault();
+            ApplicationUser Receiver = thisUser;
+            List<MessageViewModel> LiveChatMessages = new List<MessageViewModel>();
+
+
+            return View(new MessageExchange
             {
-                _messageRepo = new MessageRepository();
-                _context = new ApplicationDbContext();
-                matchRepo = new MatchingManager();
-            }
-
-            [Authorize]
-            public async Task<ActionResult> ChatAction()
-            {
-                ApplicationUser thisUser = _context.Users.Where(m => m.Id == m.Id).FirstOrDefault();
-                ApplicationUser Receiver = thisUser;
-                List<MessageViewModel> LiveChatMessages = new List<MessageViewModel>();
-
-
-                return View(new MessageExchange
+                ActiveUser = thisUser,
+                Receiver = thisUser,
+                LiveChatMessages = (await _messageRepo.GetMessagesBetween(thisUser.Id, Receiver.Id))
+                .Select(msg => new MessageViewModel
                 {
-                    ActiveUser = thisUser,
-                    Receiver = thisUser,
-                    LiveChatMessages = (await _messageRepo.GetMessagesBetween(thisUser.Id, Receiver.Id))
-                    .Select(msg => new MessageViewModel
-                    {
-                        MessageId = msg.MessageId,
-                        Body = msg.Body,
-                        Date = msg.DateSent,
-                        hasBeenRead = msg.Read,
-                        SenderId = msg.SenderId,
-                        SenderName = msg.Sender.UserName,
-                        ReceiverId = msg.ReceiverId,
-                        ReceiverName = msg.Receiver.UserName
+                    MessageId = msg.MessageId,
+                    Body = msg.Body,
+                    Date = msg.DateSent,
+                    hasBeenRead = msg.Read,
+                    SenderId = msg.SenderId,
+                    SenderName = msg.Sender.UserName,
+                    ReceiverId = msg.ReceiverId,
+                    ReceiverName = msg.Receiver.UserName
 
 
-                    }).ToList(),
-                    UserMatches = (await matchRepo.ReturnMatchesAsync())
-                });
-            }
+                }).ToList(),
+                UserMatches = (await matchRepo.ReturnMatchesAsync())
+            });
+        }
 
 
         public async Task<ActionResult> ChatProfiles()
@@ -74,11 +74,46 @@ namespace HiveProject.Controllers
             return View(profile);
         }
 
-        [HttpPost]
-            public async Task MarkConversationRead(string fromId, string toId)
-            {
-                await _messageRepo.SetMessagesAsRead(fromId, toId);
-            }
+        //public Task Unmatch(int toBeDeleted)
+        //{
+        //      List<Matches> allKnown = _context.Matches
+        //        .Include(u => u.MyUserId)
+        //        .Include(u => u.MatchedUserId)
+        //        .Where(u => (u.MatchedUserId == toBeDeleted.Id || u.MyUserId == toBeDeleted.Id))
+        //        .ToList();
 
-        }
+        //    if (!(allKnown is null) && allKnown.Count > 0)
+        //    {
+        //        _context.Matches.RemoveRange(allKnown);
+        //        _context.SaveChanges();
+        //    }
+        //    else return
+        //    {
+
+        //    }
+        //}
+
+
+        //public bool DeleteMsgs(Message toBeDeleted)
+        //{
+
+        //    List<Message> allHisMessages = _context.Messages
+        //        .Include(u => u.Sender)
+        //        .Include(u => u.Receiver)
+        //        .Where(u => (u.Sender.Id == toBeDeleted.Id) || (u.Receiver.Id == toBeDeleted.Id))
+        //        .ToList();
+
+        //    if (!(allHisMessages is null) && allHisMessages.Count > 0)
+        //    {
+        //        _context.Messages.RemoveRange(allHisMessages);
+        //        _context.SaveChanges();
+        //    }
+        //    else
+        //    {
+
+        //    }
+
+        //}
     }
+}
+           
