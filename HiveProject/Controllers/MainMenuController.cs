@@ -108,19 +108,19 @@ namespace HiveProject.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddLike(string id)
+        public async Task<ActionResult> AddLike(string id)
         {
             var like = true;
             await _Manager.AddLikeAndMatch(id, like);
-            return Json(new { success = true });
+            return PartialView();
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddDislike(string id)
+        public async Task<ActionResult> AddDislike(string id)
         {
             var like = false;
             await _Manager.AddLikeAndMatch(id, like);
-            return Json(new { success = true });
+            return PartialView();
         }
 
     }

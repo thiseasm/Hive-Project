@@ -56,9 +56,9 @@
                                                     method: "POST",
                                                     async: true,
                                                     url: "/MainMenu/AddLike/" + element.Id,
-                                                    success: function () {
-                                                        $('.btn-group').html('Liked');
-                                                        mymap.removeLayer(marker[element.Id]);
+                                                    success: function (data) {
+                                                        $('.btn-group').html(data);
+                                                        mymap.removeLayer(markers[element.Id]);
                                                     }
                                                 });
                                             });
@@ -68,9 +68,9 @@
                                                     method: "POST",
                                                     async: true,
                                                     url: "/MainMenu/AddDislike/" + element.Id,
-                                                    success: function () {
-                                                        $('.btn-group').html('Disliked');
-                                                        mymap.removeLayer(marker[element.Id]);
+                                                    success: function (data) {
+                                                        $('.btn-group').html(data);
+                                                        mymap.removeLayer(markers[element.Id]);
                                                     }
                                                 });
                                             });
