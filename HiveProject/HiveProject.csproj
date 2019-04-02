@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201903291833087_GetUsers_SP.Designer.cs">
       <DependentUpon>201903291833087_GetUsers_SP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904021433215_ChangingPrecision_AddingBio.cs" />
+    <Compile Include="Migrations\201904021433215_ChangingPrecision_AddingBio.Designer.cs">
+      <DependentUpon>201904021433215_ChangingPrecision_AddingBio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -401,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903291833087_GetUsers_SP.resx">
       <DependentUpon>201903291833087_GetUsers_SP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021433215_ChangingPrecision_AddingBio.resx">
+      <DependentUpon>201904021433215_ChangingPrecision_AddingBio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

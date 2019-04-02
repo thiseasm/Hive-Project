@@ -43,6 +43,8 @@ namespace HiveProject.Models
 
         public int Radius { get; set; }
 
+        public string Bio { get; set; }
+
         public enum Gender
         {
             Male=1,
@@ -69,6 +71,13 @@ namespace HiveProject.Models
         public virtual DbSet<Likes> Likes { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Matches> Matches { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Location>().Property(e => e.Latitude).HasPrecision(10, 7);
+            modelBuilder.Entity<Location>().Property(e => e.Longitude).HasPrecision(10, 7);
+            base.OnModelCreating(modelBuilder);
+        }
 
         public static ApplicationDbContext Create()
         {
