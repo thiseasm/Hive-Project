@@ -17,5 +17,7 @@ namespace HiveProject.Viewmodels
 
         public Models.ApplicationUser.Gender Gender { get; set; }
 
+        public string Bio { get; set; }
+
     }
 }
