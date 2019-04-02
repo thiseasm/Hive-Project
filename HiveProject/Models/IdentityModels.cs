@@ -43,6 +43,7 @@ namespace HiveProject.Models
 
         public int Radius { get; set; }
 
+        
         public string Bio { get; set; }
 
         public enum Gender
