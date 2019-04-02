@@ -1,29 +1,32 @@
 ﻿const chat = $.connection.chatHub;
-$.connection.hub.logging = true;
-
 
 chat.client.receiveMessage = (model) => {
     console.log(model);
-    var msg = model.Body.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    displayMessageInBox(model);
+};
 
+function displayMessageInBox(message, isSent = false) {
+    let theMessage = message.Body ? message.Body : message;
+    let msgText = theMessage.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     let divaki = document.createElement("div");
-    divaki.className = "d-flex justify-content-start mb-4";
+    divaki.className = "d-flex mb-4 justify-content-" + (!isSent ? "start" : "end");
+    console.log(divaki);
 
     let divoMinima = document.createElement("div");
-    divoMinima.className = "msg_cotainer";
-    divoMinima.textContent = msg;
+    divoMinima.className = "msg_cotainer" + (!isSent ? "" : "_send");
+    divoMinima.textContent = msgText;
 
-    let dt = new Date();
+    let dt = message.DateSent ? new Date(message.DateSent) : new Date();
     let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 
     let spanoTime = document.createElement("span");
-    spanoTime.className = "msg_time";
+    spanoTime.className = "msg_time" + (!isSent ? "" : "_send");
     spanoTime.innerHTML = time;
     divoMinima.appendChild(spanoTime);
     divoMinima.appendChild(spanoTime);
     divaki.appendChild(divoMinima);
-    document.getElementById("messageBox").appendChild(divaki);
-};
+    messageBox.appendChild(divaki);
+}
 
 $.connection.hub.start().done(() =>
     console.log("client is here ConnectionId =", $.connection.chatHub));
@@ -40,28 +43,10 @@ async function SendMessage() {
     var audio = new Audio('/Content/sounds/notification.mp3');
     audio.play();
 
-    var msg = document.getElementById("messageInput").value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-    let divaki = document.createElement("div");
-    divaki.className = "d-flex justify-content-start mb-4";
-
-    let divoMinima = document.createElement("div");
-    divoMinima.className = "msg_cotainer_send";
-    divoMinima.textContent = msg;
-
-    let dt = new Date();
-    let time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-
-    let spanoTime = document.createElement("span");
-    spanoTime.className = "msg_time_send";
-    spanoTime.innerHTML = time;
-    divoMinima.appendChild(spanoTime);
-    divoMinima.appendChild(spanoTime);
-    divaki.appendChild(divoMinima);
-    document.getElementById("messageBox").appendChild(divaki);
+    displayMessageInBox(document.getElementById("messageInput").value, true);
 
     console.log(
-    document.getElementById("senderName").innerHTML, document.getElementById("receiverName").innerHTML);
+        document.getElementById("senderName").innerHTML, document.getElementById("receiverName").innerHTML);
     chat.invoke("SendMessage", {
         senderId: document.getElementById("senderId").innerHTML,
         senderName: document.getElementById("senderName").innerHTML,
@@ -77,4 +62,3 @@ chat.client.getProfileInfo = function (displayName, avatar) {
     model.myName(displayName);
     model.myAvatar(avatar);
 };
-
