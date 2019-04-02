@@ -51,6 +51,7 @@ namespace HiveProject.Controllers
                 {
                     profile.Id = user.Id;
                     profile.Thumbnail = user.Thumbnail;
+                    profile.Bio=user.Bio;
                 }
             }
             return View(profile);
@@ -121,6 +122,26 @@ namespace HiveProject.Controllers
             var like = false;
             await _Manager.AddLikeAndMatch(id, like);
             return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditBio(ProfileViewModel user)
+        {
+            if(!ModelState.IsValid)
+            {
+                TempData["BioError"] = "Maximum 80 characters";
+                return RedirectToAction("Profiles");
+            }
+            //var currentUser = HttpContext.User.Identity.GetUserId();
+            using (var db = new ApplicationDbContext())
+            {
+                var userDb = await db.Users.SingleOrDefaultAsync(x => x.Id == user.Id);
+                userDb.Bio = user.Bio;
+                await db.SaveChangesAsync();
+            }
+            return RedirectToAction("Profiles");
+
         }
 
     }

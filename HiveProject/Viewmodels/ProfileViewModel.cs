@@ -1,6 +1,7 @@
 ﻿using HiveProject.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,5 +15,8 @@ namespace HiveProject.Viewmodels
 
         public ApplicationUser ActiveUser { get; set; }
         public ApplicationUser Receiver { get; set; }
+
+        [StringLength(80,ErrorMessage ="Maximum 80 characters.")]
+        public string Bio { get; set; }
     }
 }
