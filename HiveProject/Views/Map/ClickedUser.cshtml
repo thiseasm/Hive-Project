@@ -4,7 +4,7 @@
     <img src='~/Content/Images/@Model.Thumbnail' class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">@Html.DisplayFor(model => model.Username),@Html.DisplayFor(model => model.Age)</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text">@Html.DisplayFor(Model=>Model.Bio)</p>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
         <button id="like" type="button" class="btn btn-outline-success">Like</button>

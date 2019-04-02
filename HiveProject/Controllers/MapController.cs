@@ -78,7 +78,8 @@ namespace HiveProject.Controllers
                 Age = thisUser.Age,
                 Gender = thisUser.UserGender,
                 Thumbnail = thisUser.Thumbnail,
-                Username = thisUser.UserName
+                Username = thisUser.UserName,
+                Bio=thisUser.Bio
             };
 
             return PartialView(clicked);
