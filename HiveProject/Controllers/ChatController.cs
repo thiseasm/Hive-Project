@@ -31,8 +31,8 @@ namespace HiveProject.Controllers
         [Authorize]
         public async Task<ActionResult> ChatAction()
         {
-            ApplicationUser thisUser = _context.Users.Where(m => m.Id == m.Id).FirstOrDefault();
-            ApplicationUser Receiver = thisUser;
+            ApplicationUser thisUser = _context.Users.Where(m => m.UserName == User.Identity.Name).FirstOrDefault();
+            ApplicationUser Receiver = new ApplicationUser();
             List<MessageViewModel> LiveChatMessages = new List<MessageViewModel>();
 
 
@@ -61,7 +61,7 @@ namespace HiveProject.Controllers
 
         public async Task<ActionResult> ChatProfiles()
         {
-            var profile = new ProfileViewModel();
+            var profile = new UsersViewModel();
 
             {
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -69,6 +69,7 @@ namespace HiveProject.Controllers
                 {
                     profile.Id = user.Id;
                     profile.Thumbnail = user.Thumbnail;
+                    profile.Gender = user.UserGender;
                 }
             }
             return View(profile);

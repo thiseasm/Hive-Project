@@ -276,6 +276,7 @@
     <Content Include="Content\chat.css" />
     <Content Include="Content\Images\bee.png" />
     <Content Include="Content\main-page.css" />
+    <Content Include="Content\Sounds\notification.mp3" />
     <Content Include="Content\UserView.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

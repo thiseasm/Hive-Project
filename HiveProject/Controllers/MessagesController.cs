@@ -3,8 +3,9 @@ using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace HiveProject.Controllers
+namespace HiveProject.Controller
 {
+
     public class MessagesController : ApiController
     {
         private MessageRepository _messageRepo;
@@ -18,9 +19,9 @@ namespace HiveProject.Controllers
 
 
         // POST: api/Messages
-        public async Task<IHttpActionResult> Post([FromBody]string username)
+        public async Task<IHttpActionResult> Post([FromBody]string value)
         {
-            var MessagesExchanged = await _messageRepo.GetMessagesBetween(_currentLoggedUser, username);
+            var MessagesExchanged = await _messageRepo.GetMessagesBetween(_currentLoggedUser, value);
             return Ok(MessagesExchanged);
         }
 
