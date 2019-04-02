@@ -11,11 +11,13 @@
 
 </head>
 <body>
+    
+
     <section class="container">
         <div id="mapid"></div>
         <div id="clickedUser"></div>
     </section>
-    
+
 
 
     <script>
@@ -36,8 +38,9 @@
                     var marker = L.marker(latlng)
                         .bindPopup('This is your current location.')
                         .addTo(mymap);
-                    var url = window.location.protocol + "//" + window.location.host + "/Map/SaveLocation";
-
+                    var url ="Map/SaveLocation";
+                  
+                    debugger;
                     $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude })
                         .done(function (nearbyLocations) {
                             var markers = {};
@@ -78,12 +81,12 @@
 
                                     
                                 });
-                            })
+                            });
 
                         });
-                    
+
                 },
-                showError,
+                    showError,
                     { timeout: 10000 });
 
 

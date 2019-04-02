@@ -3,10 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Hive Dating App</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    
+    @Scripts.Render("~/bundles/modernizr")   
 
 
 
@@ -19,9 +18,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+                <a class="nav-link">@Html.ActionLink("Home", "Index", "MainMenu", new { area = "" }, new { @class = "navbar-brand" })</a>
+                <a class="nav-link">@Html.ActionLink("Ιnbox", "ChatAction", "Chat", new { area = "" }, new { @class = "navbar-brand" })</a>
                 <a class="nav-link">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
-                <a class="nav-link">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+
             </div>
             <div class="navbar-nav ml-auto">
                 @if (Request.IsAuthenticated)
@@ -62,4 +62,20 @@
             }
         });
     });
+
+    async function sendData(url, data) {
+        const urlToSendRequest = "http://" + window.location.host + url;
+
+        const rawData = await fetch(urlToSendRequest, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: "same-origin",
+            body: JSON.stringify(data)
+        });
+
+        return rawData.json();
+    }
 </script>
