@@ -251,9 +251,9 @@
     <Compile Include="Migrations\201904021433215_ChangingPrecision_AddingBio.Designer.cs">
       <DependentUpon>201904021433215_ChangingPrecision_AddingBio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903311201411_Messages-Ad.cs" />
-    <Compile Include="Migrations\201903311201411_Messages-Ad.Designer.cs">
-      <DependentUpon>201903311201411_Messages-Ad.cs</DependentUpon>
+    <Compile Include="Migrations\201904021818075_MassagesTable.cs" />
+    <Compile Include="Migrations\201904021818075_MassagesTable.Designer.cs">
+      <DependentUpon>201904021818075_MassagesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -444,11 +444,11 @@
     <EmbeddedResource Include="Migrations\201903291833087_GetUsers_SP.resx">
       <DependentUpon>201903291833087_GetUsers_SP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903311201411_Messages-Ad.resx">
-      <DependentUpon>201903311201411_Messages-Ad.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904021433215_ChangingPrecision_AddingBio.resx">
       <DependentUpon>201904021433215_ChangingPrecision_AddingBio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021818075_MassagesTable.resx">
+      <DependentUpon>201904021818075_MassagesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

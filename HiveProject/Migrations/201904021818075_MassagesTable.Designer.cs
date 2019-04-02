@@ -7,13 +7,13 @@ namespace HiveProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class MessagesAd : IMigrationMetadata
+    public sealed partial class MassagesTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MessagesAd));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MassagesTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903311201411_Messages-Ad"; }
+            get { return "201904021818075_MassagesTable"; }
         }
         
         string IMigrationMetadata.Source

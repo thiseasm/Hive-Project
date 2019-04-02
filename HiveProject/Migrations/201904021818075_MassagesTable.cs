@@ -3,7 +3,7 @@ namespace HiveProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MessagesAd : DbMigration
+    public partial class MassagesTable : DbMigration
     {
         public override void Up()
         {
