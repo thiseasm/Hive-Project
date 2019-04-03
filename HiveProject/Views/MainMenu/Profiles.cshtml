@@ -8,30 +8,30 @@
 
 
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="~/Content/UserView.css" />
 </head>
 
 <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">
 
 
+
 <div class="container">
+
     <div class="row user-menu-container square">
         <div class="col-md-7 user-details">
             <div class="row coralbg white">
                 <div class="col-md-6 no-pad">
                     <div class="user-pad">
                         <h2></h2>
-                        <h4 class="white"><i class="fa fa-check-circle-o"></i> 
+                        <h4 class="white">
+                            <i class="fa fa-check-circle-o"></i>
                         </h4>
-                        <h4 class="white"><i class="fa fa-twitter"></i> @Html.DisplayFor(model=>model.username)</h4>
+                        <h4 class="white"><i class="fa fa-twitter"></i> @Html.DisplayFor(model => model.username)</h4>
                     </div>
                 </div>
                 <div class="col-md-6 no-pad">
 
-                    <img src="~/Content/Images/@Url.Content(Model.Thumbnail)" class="img-responsive thumbnail">
+                    <img height="300" src="~/Content/Images/@Url.Content(Model.Thumbnail)" class="img-responsive thumbnail">
 
                 </div>
             </div>
@@ -74,7 +74,7 @@
 
                     <div class="form-horizontal">
                         <h4><strong> Edit your Profile Picture</strong></h4>
-                       
+
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.Id)
@@ -83,7 +83,7 @@
 
                             <div class="col-md-10">
                                 <br />
-                                <img height="200" src="~/Content/Images/@Url.Content(Model.Thumbnail)" />
+                                <img height="120" src="~/Content/Images/@Url.Content(Model.Thumbnail)" />
                                 <br />
                                 <br />
                             </div>
@@ -120,7 +120,7 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                        
+
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.Id)
@@ -177,10 +177,6 @@
 
 
 @section scripts {
-    <script src="~/Scripts/jquery.signalR-2.4.0.js"></script>
-    <script src="~/signalr/hubs"></script>
-    <script src="~/Scripts/Chat.js"></script>
-
 
     <script>
 
