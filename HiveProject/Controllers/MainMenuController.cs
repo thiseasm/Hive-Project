@@ -38,7 +38,7 @@ namespace HiveProject.Controllers
 
         public async Task<ActionResult> Profiles()
         {
-            var profile = new ProfileViewModel();
+            var profile = new UsersViewModel();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var user =await db.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -47,7 +47,9 @@ namespace HiveProject.Controllers
                     profile.Id = user.Id;
                     profile.Thumbnail = user.Thumbnail;
                     profile.Bio=user.Bio;
-                    profile.username = user.UserName;
+                    profile.Username = user.UserName;
+                    profile.Age = user.Age;
+                    profile.Gender = user.UserGender;
                 }
             }
             return View(profile);
