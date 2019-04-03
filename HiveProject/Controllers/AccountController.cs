@@ -177,7 +177,8 @@ namespace HiveProject.Controllers
                     Age=model.Age,
                     Thumbnail=Path.GetFileName("~/Content/Images/bee.png"),
                     Bio="Hi,i'm new here!",
-                    Radius=10
+                    Radius=10,
+                    Preferences=model.Preferences
 
                 };
                 
