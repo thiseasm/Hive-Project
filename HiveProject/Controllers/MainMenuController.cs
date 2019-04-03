@@ -142,5 +142,30 @@ namespace HiveProject.Controllers
 
         }
 
+        public ActionResult Preferences()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditPreferences(Preferences preferences)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View("Preferences");
+            }
+            var currentUser = HttpContext.User.Identity.GetUserId();
+            using (var db = new ApplicationDbContext())
+            {
+                var user = await db.Users.FirstOrDefaultAsync(x=>x.Id==currentUser);
+                user.Preferences = preferences.Preference;
+                user.Radius = preferences.Range;
+                await db.SaveChangesAsync();
+
+            }
+            return View("Preferences");
+        }
+
     }
 }

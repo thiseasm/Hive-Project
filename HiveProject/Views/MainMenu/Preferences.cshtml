@@ -1,0 +1,43 @@
+﻿@model HiveProject.Viewmodels.Preferences
+
+@{
+    ViewBag.Title = "Preferences";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Preferences</h2>
+
+@using (Html.BeginForm("EditPreferences","MainMenu",FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Preferences</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Range, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Range, new { htmlAttributes = new { min = 5, max = 30 } }) Km
+            @Html.ValidationMessageFor(model => model.Range, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Preference, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(m => m.Preference, "Select Gender", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Preference, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
