@@ -284,6 +284,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chat.css" />
     <Content Include="Content\Images\bee.png" />
+    <Content Include="Content\Images\Hive.png" />
     <Content Include="Content\main-page.css" />
     <Content Include="Content\Sounds\notification.mp3" />
     <Content Include="Content\UserView.css" />

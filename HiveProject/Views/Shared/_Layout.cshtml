@@ -12,13 +12,14 @@
 </head>
 <body style="background:#F5F0DF">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style=" background: linear-gradient(to bottom right, #dd2476 10%, #ff512f 100%)">
-        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <a href='@Url.Action("Index","MainMenu")'>
+            <img class="rounded-circle" src="~/Content/Images/Hive.png" height="40" width="56" />
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link">@Html.ActionLink("Home", "Index", "MainMenu", new { area = "" }, new { @class = "navbar-brand" })</a>
                 <a class="nav-link">@Html.ActionLink("Ιnbox", "ChatAction", "Chat", new { area = "" }, new { @class = "navbar-brand" })</a>
                 <a class="nav-link">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
 
@@ -36,7 +37,8 @@
 
     </nav>
 
-    <div class="container body-content">
+    <div class="container body-content " >
+        
         @RenderBody()
         <hr />
         <footer>
