@@ -42,9 +42,11 @@ namespace HiveProject.Models
         public virtual Location CurrentLocation { get; set; }
 
         public int Radius { get; set; }
-
         
         public string Bio { get; set; }
+
+        [Required]
+        public  Gender Preferences { get; set; }
 
         public enum Gender
         {

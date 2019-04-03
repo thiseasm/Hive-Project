@@ -88,6 +88,11 @@ namespace HiveProject.Models
         [Required]
         [Range(18, 99, ErrorMessage = "The Age should be between 18 and 99")]
         public int Age { get; set; }
+
+        [Required]
+        [Range(1, 3, ErrorMessage = "The Interested in field is required.")]
+        [Display(Name ="Interested In")]
+        public HiveProject.Models.ApplicationUser.Gender Preferences { get; set; }
     }
 
     public class ResetPasswordViewModel
