@@ -28,6 +28,10 @@ namespace HiveProject.Controllers
 
         public ActionResult Index()
         {
+            //string currentUser = HttpContext.User.Identity.GetUserId();
+            if (User.IsInRole("Admin"))
+                return RedirectToAction("Index","Admin");
+
             return View();
         }
 

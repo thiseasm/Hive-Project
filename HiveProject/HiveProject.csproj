@@ -194,6 +194,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ChatHub\ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InteractionController.cs" />
@@ -399,6 +400,7 @@
     <Content Include="Views\MainMenu\AddDislike.cshtml" />
     <Content Include="Views\Chat\ChatAction.cshtml" />
     <Content Include="Views\Chat\ChatProfiles.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
