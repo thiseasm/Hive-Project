@@ -24,12 +24,9 @@
                 <div class="col-md-6 no-pad">
                     <div class="user-pad">
                         <h2></h2>
-                        <h4 class="white"><i class="fa fa-check-circle-o"></i> .
+                        <h4 class="white"><i class="fa fa-check-circle-o"></i> 
                         </h4>
-                        <h4 class="white"><i class="fa fa-twitter"></i> CoolesOCool</h4>
-                        <button type="button" class="btn btn-labeled btn-info" href="#">
-                            <span class="btn-label"><i class="fa fa-pencil"></i></span>Update
-                        </button>
+                        <h4 class="white"><i class="fa fa-twitter"></i> @Html.DisplayFor(model=>model.username)</h4>
                     </div>
                 </div>
                 <div class="col-md-6 no-pad">
@@ -77,9 +74,7 @@
 
                     <div class="form-horizontal">
                         <h4><strong> Edit your Profile Picture</strong></h4>
-                        <br />
-                        @Html.LabelFor(model => model.Thumbnail, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <br />
+                       
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.Id)
@@ -116,27 +111,45 @@
                 }
             </div>
             <div class="user-menu-content">
-                <h3>
-                    About me
-                </h3>
+                <h4><strong>About me</strong></h4>
 
                 <br />
                 <br />
+                @using (Html.BeginForm("EditBio", "MainMenu", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
-                <button type="button" class="btn btn-labeled btn-danger" href="#">
-                    <span class="btn-label"><i class="fa fa-envelope-o"></i></span>Edit About Me
-                </button>
+                    <div class="form-horizontal">
+                        
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
 
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Bio</span>
+
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Bio, new { rows = "5", cols = "30" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                            @if (TempData["BioError"] != null)
+                            {
+                                <font color="red">
+                                    @TempData["BioError"]
+                                </font>
+                            }
+                        </div>
+
                     </div>
-
-                    <textarea class="form-control"  ></textarea>
-                </div>
-
-
-
+                }
             </div>
 
 
@@ -159,46 +172,6 @@
     </div>
 </div>
 
-@using (Html.BeginForm("EditBio", "MainMenu", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>ProfileViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-2" })
-            </div>
-            <div class="col-md-2">
-                @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-            @if (TempData["BioError"] != null)
-            {
-                <font color="red">
-                    @TempData["BioError"]
-                </font>
-            }
-        </div>
-
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 
 
