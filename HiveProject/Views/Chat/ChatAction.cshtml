@@ -14,6 +14,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/chat.css" />
+    
 </head>
 <body>
     <div class="container-fluid h-100 mt-5">
@@ -71,7 +72,7 @@
                         <div class="action_menu">
                             <ul>
                                 <li><i class="fas fa-user-circle"></i>@Html.ActionLink("View profile", "ChatProfiles", "Chat") </li>
-                                <li><i class="fas fa-users" onclick="resetChat"></i>Delete message history</li>
+                                <li><i class="fas fa-users" onclick="clearMessageBox()"></i>Delete message history</li>
                                 <li><i class="fas fa-plus"></i> Add to group</li>
                                 <li><i class="fas fa-ban"></i> Block</li>
                             </ul>
