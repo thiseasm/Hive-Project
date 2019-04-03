@@ -23,17 +23,20 @@ namespace HiveProject.Managers
         }
 
 
-        public IEnumerable<UsersInRadius> GetUsersAsync(string id,decimal lat,decimal lng,int radius)
+        public IEnumerable<UsersInRadius> GetUsersAsync(decimal lat,decimal lng)
         {
 
             using (var db = new ApplicationDbContext())
             {
-                var guid = new SqlParameter("@Id", id);
+                var currentUser = db.Users.Find(_currentLoggedUser);
+
+                var guid = new SqlParameter("@Id", currentUser.Id);
                 var latitude = new SqlParameter("@Lat",lat);
                 var longitude = new SqlParameter("@Long", lng);
-                var range = new SqlParameter("@Range", radius);
+                var range = new SqlParameter("@Range", currentUser.Radius);
+                var preference = new SqlParameter("@Preference", currentUser.Preferences);
 
-                var result = db.Database.SqlQuery<UsersInRadius>("GetUsers @Id,@Lat,@Long,@Range", guid, latitude, longitude, range).ToArray();
+                var result = db.Database.SqlQuery<UsersInRadius>("GetUsersFiltered @Id,@Lat,@Long,@Range,@Preference", guid, latitude, longitude, range,preference).ToArray();
 
                 return result;
 

@@ -48,7 +48,7 @@ namespace HiveProject.Controllers
                 db.SaveChanges();
             }
             //TODO add radius
-            locations = manager.GetUsersAsync(thisUserId, latitude, longitude, 1000);
+            locations = manager.GetUsersAsync(latitude, longitude);
 
             return Json(locations);
             //using (var db = new ApplicationDbContext())
