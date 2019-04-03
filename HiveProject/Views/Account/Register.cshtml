@@ -32,7 +32,13 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(m=>m.Gender, "Select Gender", new { @class = "form-control" })
+            @Html.EnumDropDownListFor(m => m.Gender, "Select Gender", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Preferences, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(m => m.Preferences, "Select Gender", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

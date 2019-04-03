@@ -176,7 +176,9 @@ namespace HiveProject.Controllers
                     UserGender=model.Gender,
                     Age=model.Age,
                     Thumbnail=Path.GetFileName("~/Content/Images/bee.png"),
-                    Bio="Hi,i'm new here!"
+                    Bio="Hi,i'm new here!",
+                    Radius=10
+
                 };
                 
                 var result = await UserManager.CreateAsync(user, model.Password);
