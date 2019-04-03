@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201904032100574_AddingPreferences.Designer.cs">
       <DependentUpon>201904032100574_AddingPreferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904032206130_GetUsersFiltered_SP.cs" />
+    <Compile Include="Migrations\201904032206130_GetUsersFiltered_SP.Designer.cs">
+      <DependentUpon>201904032206130_GetUsersFiltered_SP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -467,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904032100574_AddingPreferences.resx">
       <DependentUpon>201904032100574_AddingPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904032206130_GetUsersFiltered_SP.resx">
+      <DependentUpon>201904032206130_GetUsersFiltered_SP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
