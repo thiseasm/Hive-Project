@@ -18,16 +18,11 @@ namespace HiveProject.ChatHub
         private static readonly ConcurrentDictionary<string, ChatUser> Users = new ConcurrentDictionary<string, ChatUser>();
         private MessageRepository _messageRepo;
 
-        public string Url = "http://localhost:65081";
-
-        public IWebProxy Proxy { get; set; }
-        public HubConnection Connection { get; set; }
-
 
         public ChatHub()
         {
             _messageRepo = new MessageRepository();
-            Connection = new HubConnection(Url);
+           
         }
 
         public override Task OnConnected()
@@ -82,6 +77,7 @@ namespace HiveProject.ChatHub
             }
         }
 
+      
         private ChatUser GetUser(string username)
         {
             Users.TryGetValue(username, out ChatUser user);
