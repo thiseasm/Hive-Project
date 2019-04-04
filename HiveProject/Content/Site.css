@@ -1,6 +1,12 @@
 ﻿body {
+    background-image: url('Images/logo.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
     padding-top: 50px;
     padding-bottom: 20px;
+    color: #dd2476;
 }
 
 /* Set padding to keep content from hitting the edges */
