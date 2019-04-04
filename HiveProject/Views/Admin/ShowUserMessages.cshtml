@@ -7,8 +7,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShowUserMessages</h2>
-
+<h2>User Messages</h2>
+<br />
 
 <table class="table">
     <tr>
@@ -67,5 +67,5 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back to Users", "Index")
+    <p>@Html.ActionLink("Back to Users", "Index", null, new { @class = "btn btn-primary", @role = "button" })</p> 
 </div>
