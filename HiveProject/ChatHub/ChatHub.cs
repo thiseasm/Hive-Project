@@ -45,8 +45,17 @@ namespace HiveProject.ChatHub
             {
                 user.ConnectionIds.Add(connectionId);
             }
-
+            Clients.All.setUserOnline(userName);
             return base.OnConnected();
+        }
+
+        public override Task OnDisconnected(bool stopCalled)
+        {
+            string userName = Context.User.Identity.Name;
+            Clients.All.setUserOffline(userName);
+            Users.TryRemove(userName, out ChatUser user);
+
+            return base.OnDisconnected(stopCalled);
         }
 
         public async Task SendMessage(MessageViewModel model)
@@ -96,4 +105,3 @@ namespace HiveProject.ChatHub
         public HashSet<string> ConnectionIds { get; set; }
     }
 }
-    

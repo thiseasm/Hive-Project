@@ -5,12 +5,33 @@ chat.client.receiveMessage = (model) => {
     displayMessageInBox(model);
 };
 
+chat.client.setUserOnline = userName => setUserStatus(userName, true);
+chat.client.setUserOffline = userName => setUserStatus(userName, false);
+
+function setUserStatus(userName, status) {
+    let statusState = status ? "online" : "offline";
+
+    let iconId = "statusOf-" + userName;
+    let openIconId = "openStatusOf-" + userName;
+    let verbalStatusId = "verbalStatusOf-" + userName;
+
+    let userStatusIcon = document.getElementById(iconId);
+    let openUserStatusIcon = document.getElementById(openIconId);
+    let verbalStatus = document.getElementById(verbalStatusId);
+
+    if (userStatusIcon)
+        userStatusIcon.className = "status_icon " + statusState;
+    if (openUserStatusIcon)
+        openUserStatusIcon.className = "status_icon " + statusState;
+    if (verbalStatus)
+        verbalStatus.innerHTML = userName + " is " + statusState;
+}
+
 function displayMessageInBox(message, isSent = false) {
     let theMessage = message.Body ? message.Body : message;
     let msgText = theMessage.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     let divaki = document.createElement("div");
     divaki.className = "d-flex mb-4 justify-content-" + (!isSent ? "start" : "end");
-    console.log(divaki);
 
     let divoMinima = document.createElement("div");
     divoMinima.className = "msg_cotainer" + (!isSent ? "" : "_send");
@@ -56,7 +77,10 @@ async function SendMessage() {
         body: document.getElementById("messageInput").value,
         hasBeenRead: false
     });
+
+    document.getElementById("messageInput").value = "";
 }
+
 
 chat.client.getProfileInfo = function (displayName, avatar) {
     model.myName(displayName);

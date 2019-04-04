@@ -422,7 +422,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ChatUserView\" />
     <Folder Include="Views\Interaction\" />
   </ItemGroup>
   <ItemGroup>
