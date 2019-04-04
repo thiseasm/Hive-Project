@@ -14,142 +14,147 @@
 
 
 
-<div class="container" style="background:#F5F0DF">
+<div class="container user-menu-container square" style="background:#F5F0DF">
 
-    <div class="row user-menu-container square">
-        <div class="col-md-7 user-details">
-            <div class="row coralbg white" style="height:300px">
-                <div class="col-md-6 no-pad" >
-                    <div class="user-pad" style="color:ActiveBorder; background: #FA396f">
-                        <h2></h2>
-                        <h4>
-                            <i>@Html.DisplayFor(model => model.Username)</i>
-                        </h4>
-                        <h3>@Html.DisplayFor(model => model.Gender), @Html.DisplayFor(model => model.Age) </h3>
-                        <h4>@Html.DisplayFor(model => model.Bio)</h4>
-                    </div>
+    <div class="col no-pad">
+        <div class="col-md-9 user-details">
+            <div class="row coralbg white" style="height:320px">
+                <div class="col-md-6 no-pad" style="color:ActiveBorder; background: #FA396f">
+                    <h2></h2>
+                    <h4 style="margin-left:4px">
+                        <i>@Html.DisplayFor(model => model.Username)</i>
+                    </h4>
+                    <h3 style="margin-left:4px">@Html.DisplayFor(model => model.Gender), @Html.DisplayFor(model => model.Age) </h3>
+                    <h4 style="margin-left:4px">@Html.DisplayFor(model => model.Bio)</h4>
                 </div>
+
                 <div class="col-md-6 no-pad">
 
-                    <img height="300" src="~/Content/Images/@Url.Content(Model.Thumbnail)" class="img-responsive thumbnail">
+                    <img height="320" src="~/Content/Images/@Url.Content(Model.Thumbnail)" class="img-responsive thumbnail">
 
                 </div>
             </div>
         </div>
 
+        <div class="row user-menu-container square no-pad">
+            <div class="col-md-3 user-menu-btns" style="margin-left:12px">
+                <div class="btn-group-vertical square" id="responsive" style="background: linear-gradient(to bottom right, #dd2476 10%, #ff512f 100%)">
+                    <a href="#" class="btn btn-block btn-default active">
+                        Change Avatar
+                    </a>
+                    <a href="#" class="btn btn-default">
+                        Edit Bio
+                    </a>
 
-        <div class="col-md-1 user-menu-btns" style="align-content:center;">
-            <div class="btn-group-vertical square" id="responsive" style="background: linear-gradient(to bottom right, #dd2476 10%, #ff512f 100%)">
-                <a href="#" class="btn btn-block btn-default active">
-                    Change <br />Avatar
-                </a>
-                <a href="#" class="btn btn-default">
-                    Edit<br />Bio
-                </a>
+                    <a href="#" class="btn btn-default">
+                        Inbox
+                    </a>
 
-                <a href="#" class="btn btn-default">
-                    Inbox
-                </a>
+                    <a href="#" class="btn btn-default" id="preference">
+                        Preferences
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="col-md-4 user-menu user-pad">
-            <div class="user-menu-content active">
+            <div class="col-md-6 user-menu user-pad">
+                <div class="user-menu-content active">
 
-                @using (Html.BeginForm("EditProfilePic", "MainMenu", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("EditProfilePic", "MainMenu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal">
-                        <h3 style="color:#a51a64"><strong>Edit your Profile Picture</strong></h3>
+                        <div class="form-horizontal">
+                            <h3 style="color:#a51a64"><strong>Edit your Profile Picture</strong></h3>
 
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Id)
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-md-10">
+                                <div class="col-md-10">
+                                    <br />
+                                    <img height="120" src="~/Content/Images/@Url.Content(Model.Thumbnail)" />
+                                    <br />
+                                    <br />
+                                </div>
                                 <br />
-                                <img height="120" src="~/Content/Images/@Url.Content(Model.Thumbnail)" />
-                                <br />
-                                <br />
+
+
                             </div>
                             <br />
+                            <div class="form-group">
 
+                                <input type="file" name="Avatar" />
+                                @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
+                                <div class="col-md-offset-2 col-md-10">
 
-                        </div>
-                        <br />
-                        <div class="form-group">
-
-                            <input type="file" name="Avatar" />
-                            @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
-                            <div class="col-md-offset-2 col-md-10">
-
-                                <input type="submit" value="Save" class="btn btn-default" />
-                            </div>
-                            @if (TempData["Error"] != null)
-                            {
-                                <font color="red">
-                                    @TempData["Error"]
-                                </font>
-                            }
-                        </div>
-                    </div>
-                }
-            </div>
-            <div class="user-menu-content">
-                <h3 style="color:#a51a64"><strong>About me</strong></h3>
-                <hr />
-
-                <br />
-                <br />
-                @using (Html.BeginForm("EditBio", "MainMenu", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Id)
-
-
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.TextAreaFor(model => model.Bio, new { rows = "5", cols = "30" })
-                            </div>
-                            <div class="col-md-2">
-                                @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                                @if (TempData["Error"] != null)
+                                {
+                                    <font color="red">
+                                        @TempData["Error"]
+                                    </font>
+                                }
                             </div>
                         </div>
+                    }
+                </div>
+                <div class="user-menu-content">
+                    <h3 style="color:#a51a64"><strong>About me</strong></h3>
+                    <hr />
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Save" class="btn btn-default" />
+                    <br />
+                    <br />
+                    @using (Html.BeginForm("EditBio", "MainMenu", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.Bio, new { rows = "5", cols = "30" })
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                            @if (TempData["BioError"] != null)
-                            {
-                                <font color="red">
-                                    @TempData["BioError"]
-                                </font>
-                            }
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                                @if (TempData["BioError"] != null)
+                                {
+                                    <font color="red">
+                                        @TempData["BioError"]
+                                    </font>
+                                }
+                            </div>
+
                         </div>
+                    }
+                </div>
 
-                    </div>
-                }
-            </div>
+                <div class="user-menu-content">
+                    <h3>
+                        Your Inbox
+                    </h3>
 
-            <div class="user-menu-content">
-                <h3>
-                    Your Inbox
-                </h3>
-                
-                <hr />
-                <button type="button" class="btn btn-outline-danger" href="#">
-                    View All Messages
-                </button>
+                    <hr />
+                    <button type="button" class="btn btn-outline-danger" href="#">
+                        View All Messages
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+        
 </div>
 
 
@@ -171,6 +176,13 @@
                 var index = $(this).index();
                 $("div.user-menu>div.user-menu-content").removeClass("active");
                 $("div.user-menu>div.user-menu-content").eq(index).addClass("active");
+            });
+        });
+
+        $(document).ready(function () {
+            $('#preference').on('click', function () {
+                let url = '@Url.Action("Preferences", "MainMenu")';
+                window.location.href = url;
             });
         });
 
