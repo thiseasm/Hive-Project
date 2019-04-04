@@ -419,6 +419,7 @@
     <Content Include="Views\Chat\ChatProfiles.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\MainMenu\Preferences.cshtml" />
+    <Content Include="Views\Admin\ShowUserMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

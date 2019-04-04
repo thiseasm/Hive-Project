@@ -33,7 +33,7 @@ namespace HiveProject.Controllers
                                      Gender = y.UserGender,
                                      Bio = y.Bio
                                  })
-                                 .ToList().ToPagedList(page ?? 1, 2);
+                                 .ToList().ToPagedList(page ?? 1, 5);
 
                 return View(users);
             }
@@ -49,6 +49,25 @@ namespace HiveProject.Controllers
             }
             return RedirectToAction("Index");
 
+        }
+
+        public ActionResult ShowUserMessages(string id,int? page)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var messages = db.Messages.Include("ApplicationUser").Where(x => x.SenderId == id || x.ReceiverId == id)
+                                        .Select(y => new MessageViewModel
+                                        {
+                                            MessageId = y.MessageId,
+                                            SenderName = y.Sender.UserName,
+                                            ReceiverName = y.Receiver.UserName,
+                                            Date = y.DateSent,
+                                            Body=y.Body
+                                        }).OrderBy(c => c.Date)
+                                        .ToList()
+                                        .ToPagedList(page ?? 1, 10);
+                return View(messages);
+            }
         }
     }
 }
