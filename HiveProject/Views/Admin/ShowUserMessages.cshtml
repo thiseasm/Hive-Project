@@ -13,18 +13,18 @@
 <table class="table">
     <tr>
         <th>
-            MessageId
+            Message Id
         </th>
 
         <th>
-            SenderName
+            Sender Name
         </th>
 
         <th>
-            ReceiverName
+            Receiver Name
         </th>
         <th>
-            Body
+            Message Body
         </th>
         <th>
             Date
@@ -55,7 +55,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Delete", "DeleteMessage", new {  id=item.MessageId })
+                @Html.ActionLink("Delete", "DeleteMessage", new {  id=item.MessageId }, new { @class = "btn btn-danger", @role = "button", @onclick = "return confirm('Are you sure?');" })
             </td>
         </tr>
     }
