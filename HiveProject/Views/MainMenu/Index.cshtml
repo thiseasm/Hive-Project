@@ -42,7 +42,6 @@
                         .addTo(mymap);
                     var url ="Map/SaveLocation";
                   
-                    debugger;
                     $.post(url, { lat: location.coords.latitude, lng: location.coords.longitude })
                         .done(function (nearbyLocations) {
                             var markers = {};
