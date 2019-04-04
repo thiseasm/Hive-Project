@@ -4,7 +4,7 @@
 
 /* -- color classes -- */
 .coralbg {
-    background-color: #FA396F;
+    background-color: #F5F0DF;
 }
 
 .coral {
@@ -12,27 +12,24 @@
 }
 
 .turqbg {
-    background-color: #46D8D2;
+    background-color: #a51a64;
 }
 
 .turq {
-    color: #46D8D2;
+    color: #a51a64;
 }
 
 .white {
-    color: #fff !important;
+    color: #a51a64 !important;
 }
 
 /* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
 div.user-menu-container {
     z-index: 10;
-    background-color: #fff;
+    background-color: #F5F0DF;
     margin-top: 20px;
     background-clip: padding-box;
-    opacity: 0.97;
     filter: alpha(opacity=97);
-    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
 
     div.user-menu-container .btn-lg {
@@ -41,7 +38,7 @@ div.user-menu-container {
 
     div.user-menu-container h4 {
         font-weight: 300;
-        color: #8b8b8b;
+        color: #FFFFFF;
     }
 
     div.user-menu-container a, div.user-menu-container .btn {
@@ -64,14 +61,14 @@ div.user-menu-container {
 
         div.user-menu-container .btn-group-vertical > a {
             padding: 20px 25px;
-            background-color: #46D8D2;
+            background-color: #a51a64;
             color: white;
             border-color: #fff;
         }
 
 div.btn-group-vertical > a:hover {
-    color: white;
-    border-color: white;
+    color: #a51a64;
+    border-color: #F5F0DF;
 }
 
 div.btn-group-vertical > a.active {
@@ -95,11 +92,11 @@ div.user-menu-btns {
         border-left: 0;
         border-bottom: 13px solid transparent;
         border-top: 13px solid transparent;
-        border-left: 10px solid #46D8D2;
+        border-left: 10px solid #FA396f;
     }
 /* -- The main tab & content styling of the vertical buttons info-- */
 div.user-menu-content {
-    color: #323232;
+    color: #a51a64;
 }
 
 ul.user-menu-list {
@@ -125,7 +122,7 @@ div.user-menu div.user-menu-content:not(.active) {
     left: -12px;
     display: inline-block;
     padding: 6px 12px;
-    background: rgba(0,0,0,0.15);
+    background: #a51a64;
     border-radius: 3px 0 0 3px;
 }
 
@@ -147,7 +144,7 @@ div.user-menu div.user-menu-content:not(.active) {
 }
 
 .user-details {
-    background: #eee;
+    background: #F5F0DF;
     min-height: 333px;
 }
 
@@ -183,25 +180,25 @@ div.user-menu div.user-menu-content:not(.active) {
     position: absolute;
     top: 0;
     right: 0;
-    background: rgba(70, 216, 210, 0.44);
+    background: #F5F0DF;
     width: 100%;
     height: 100%;
     padding: 2%;
     display: none;
     text-align: center;
-    color: #fff !important;
+    color: #a51a64 !important;
     z-index: 2;
 }
 
     .caption a {
         padding-right: 10px;
-        color: #fff;
+        color: #a51a64;
     }
 
 .info {
     display: block;
     padding: 10px;
-    background: #eee;
+    background: #F5F0DF;
     text-transform: uppercase;
     font-weight: 300;
     text-align: right;
@@ -214,7 +211,7 @@ div.user-menu div.user-menu-content:not(.active) {
 .stats {
     display: block;
     padding: 10px;
-    color: white;
+    color: #FA396f;
 }
 
 .share-links {
