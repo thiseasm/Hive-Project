@@ -51,8 +51,11 @@ namespace HiveProject.Controllers
 
         }
 
-        public ActionResult ShowUserMessages(string id,int? page)
+        public ActionResult ShowUserMessages(string id, int? page)
         {
+            if (string.IsNullOrEmpty(id))
+                id = Session["id"] as string;
+
             using (var db = new ApplicationDbContext())
             {
                 var messages = db.Messages.Include("ApplicationUser").Where(x => x.SenderId == id || x.ReceiverId == id)
@@ -62,12 +65,25 @@ namespace HiveProject.Controllers
                                             SenderName = y.Sender.UserName,
                                             ReceiverName = y.Receiver.UserName,
                                             Date = y.DateSent,
-                                            Body=y.Body
+                                            Body = y.Body
                                         }).OrderBy(c => c.Date)
                                         .ToList()
                                         .ToPagedList(page ?? 1, 10);
+                Session["id"] = id as string;
                 return View(messages);
             }
+        }
+
+        public async Task<ActionResult> DeleteMessage(int id)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var message = await db.Messages.FirstOrDefaultAsync(x => x.MessageId == id);
+                db.Messages.Remove(message);
+               await  db.SaveChangesAsync();
+            }
+
+            return RedirectToAction("ShowUserMessages");
         }
     }
 }
