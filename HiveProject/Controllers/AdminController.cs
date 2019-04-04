@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace HiveProject.Controllers
 {
@@ -16,15 +18,12 @@ namespace HiveProject.Controllers
     public class AdminController : Controller
     {
 
-       
-        // GET: Admin
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page)
         {
-            var users = new List<UsersViewModel>();
             using (var db = new ApplicationDbContext())
             {
                 var role = await db.Roles.SingleAsync(y => y.Name == "Admin");
-                users = await db.Users.Where(x => x.Email != "Admin@admin.com" && !x.Roles.Any(z => z.RoleId == role.Id))
+                var users = db.Users.Where(x => x.Email != "Admin@admin.com" && !x.Roles.Any(z => z.RoleId == role.Id))
                                  .Select(y => new UsersViewModel
                                  {
                                      Id = y.Id,
@@ -34,9 +33,10 @@ namespace HiveProject.Controllers
                                      Gender = y.UserGender,
                                      Bio = y.Bio
                                  })
-                                 .ToListAsync();
+                                 .ToList().ToPagedList(page ?? 1, 2);
+
+                return View(users);
             }
-            return View(users);
         }
 
         public async Task<ActionResult> Upgrade(string id)
@@ -48,7 +48,7 @@ namespace HiveProject.Controllers
                 await db.SaveChangesAsync();
             }
             return RedirectToAction("Index");
-            
+
         }
     }
 }
