@@ -14,7 +14,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
         </div>
     </div>
     <div class="form-group">
@@ -26,25 +26,26 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Preferences, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(m => m.Preferences, "Select Gender", new { @class = "form-control" })
+            @Html.EnumDropDownListFor(m => m.Preferences, "Select Preferences", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Age, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Age, new { @class = "form-group col-xs-5 col-lg-1" })
+            @Html.TextBoxFor(m => m.Age, new { @class = "form-group col-xs-5 col-lg-1", placeholder = "Age" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
         </div>
+        <i>**Passwords must have at least one non letter or digit character,at least one lowercase ('a'-'z'), at least one uppercase ('A'-'Z').</i>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
         </div>
     </div>
     <div class="form-group">
