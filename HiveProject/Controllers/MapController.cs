@@ -18,9 +18,9 @@ namespace HiveProject.Controllers
             var manager = new MatchingManager();
             var locations = Enumerable.Empty<UsersInRadius>();
             var thisUserId = User.Identity.GetUserId();
+
             using (var db = new ApplicationDbContext())
             {
-
                 Location location = new Location()
                 {
                     Latitude = latitude,
@@ -47,27 +47,15 @@ namespace HiveProject.Controllers
 
                 db.SaveChanges();
             }
-            //TODO add radius
+
             locations = manager.GetUsersAsync(latitude, longitude);
 
             return Json(locations);
-            //using (var db = new ApplicationDbContext())
-            //{
-            //    db.Configuration.LazyLoadingEnabled = false;
-            //    locations = db.Locations.Where(l => l.Id != thisUserId).ToList();
-            //}
-
-            //return Json(locations.Select(l => new Location()
-            //{
-            //    Id = l.Id,
-            //    Latitude = l.Latitude,
-            //    Longitude = l.Longitude
-            //}).ToArray());
         }
 
         [HttpPost]
         public ActionResult ClickedUser(string UserId)
-        {            
+        {
             ApplicationUser thisUser = new ApplicationUser();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
@@ -81,7 +69,7 @@ namespace HiveProject.Controllers
                 Gender = thisUser.UserGender,
                 Thumbnail = thisUser.Thumbnail,
                 Username = thisUser.UserName,
-                Bio=thisUser.Bio
+                Bio = thisUser.Bio
             };
 
             return PartialView(clicked);
