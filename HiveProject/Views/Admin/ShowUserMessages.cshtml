@@ -65,3 +65,7 @@
 <div>
     <ul class="pagination">@Html.PagedListPager(Model, page => Url.Action("ShowUserMessages", new { page }))</ul>
 </div>
+
+<div>
+    @Html.ActionLink("Back to Users", "Index")
+</div>
