@@ -164,6 +164,7 @@ namespace HiveProject.Controllers
                 await db.SaveChangesAsync();
 
             }
+            ViewBag.message = "Preferences Changed!";
             return View("Preferences");
         }
 
