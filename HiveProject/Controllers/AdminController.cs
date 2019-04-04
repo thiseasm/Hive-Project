@@ -23,7 +23,8 @@ namespace HiveProject.Controllers
             using (var db = new ApplicationDbContext())
             {
                 var role = await db.Roles.SingleAsync(y => y.Name == "Admin");
-                var users = db.Users.Where(x => x.Email != "Admin@admin.com" && !x.Roles.Any(z => z.RoleId == role.Id))
+                var users = db.Users
+                                 .Where(x => x.Email != "Admin@admin.com" && !x.Roles.Any(z => z.RoleId == role.Id) && x.LockoutEndDateUtc == null)
                                  .Select(y => new UsersViewModel
                                  {
                                      Id = y.Id,
@@ -80,10 +81,22 @@ namespace HiveProject.Controllers
             {
                 var message = await db.Messages.FirstOrDefaultAsync(x => x.MessageId == id);
                 db.Messages.Remove(message);
-               await  db.SaveChangesAsync();
+                await db.SaveChangesAsync();
             }
 
             return RedirectToAction("ShowUserMessages");
+        }
+
+        public async Task<ActionResult> DisableUser(string id)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+                user.LockoutEndDateUtc = DateTime.MaxValue;
+                await db.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
