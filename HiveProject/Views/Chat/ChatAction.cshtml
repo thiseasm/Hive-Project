@@ -32,18 +32,18 @@
                         <ul class="contacts">
                             @foreach (UsersViewModel user in Model.UserMatches)
                             {
-                                <li class="active" onclick="SetReceiver('@user.Id', '@user.Username', '/Content/Images/@user.Thumbnail')">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img id="receiver avatar " src="~/Content/Images/@user.Thumbnail" class="rounded-circle user_img">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>@user.Username</span>
-                                            <p>@user.Username is online</p>
-                                        </div>
+                            <li class="active" onclick="SetReceiver('@user.Id', '@user.Username', '/Content/Images/@user.Thumbnail')">
+                                <div class="d-flex bd-highlight">
+                                    <div class="img_cont">
+                                        <img id="receiver avatar " src="~/Content/Images/@user.Thumbnail" class="rounded-circle user_img">
+                                        <span class="status_icon offline" id='statusOf-@user.Username'></span>
                                     </div>
-                                </li>
+                                    <div class="user_info">
+                                        <span>@user.Username</span>
+                                        <p id='verbalStatusOf-@user.Username'>@user.Username is offline</p>
+                                    </div>
+                                </div>
+                            </li>
                             }
                         </ul>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="d-flex bd-highlight">
                             <div class="img_cont">
                                 <img id="ReceiverAvatar" src="~/Content/Images/@Model.ActiveUser.Thumbnail" class="rounded-circle user_img">
-                                <span class="online_icon"></span>
+                                <span id='openStatusOf-@Model.ActiveUser.UserName' class="status_icon offline"></span>
                             </div>
                             <div class="user_info">
                                 <span id="ReceiverName">@Model.ActiveUser.UserName</span>
@@ -82,27 +82,27 @@
                         {
                             if (message.SenderId == Model.ActiveUser.Id)
                             {
-                                <div class="d-flex justify-content-end mb-4">
-                                    <div class="msg_cotainer_send">
-                                        @message.Body
-                                        <span class="msg_time_send">@message.Date.TimeOfDay</span>
-                                    </div>
-                                    <div class="img_cont_msg">
-                                        <img src="~/Content/Images/@Model.ActiveUser.Thumbnail" class="rounded-circle user_img_msg">
-                                    </div>
-                                </div>
+                        <div class="d-flex justify-content-end mb-4">
+                            <div class="msg_cotainer_send">
+                                @message.Body
+                                <span class="msg_time_send">@message.Date.TimeOfDay</span>
+                            </div>
+                            <div class="img_cont_msg">
+                                <img src="~/Content/Images/@Model.ActiveUser.Thumbnail" class="rounded-circle user_img_msg">
+                            </div>
+                        </div>
                             }
                             else
                             {
-                                <div class="d-flex justify-content-start mb-4">
-                                    <div class="msg_cotainer">
-                                        @message.Body
-                                        <span class="msg_time">@message.Date.TimeOfDay</span>
-                                    </div>
-                                    <div class="img_cont_msg">
-                                        <img src="https://randomuser.me/api/portraits/women/84.jpg" class="rounded-circle user_img_msg">
-                                    </div>
-                                </div>
+                        <div class="d-flex justify-content-start mb-4">
+                            <div class="msg_cotainer">
+                                @message.Body
+                                <span class="msg_time">@message.Date.TimeOfDay</span>
+                            </div>
+                            <div class="img_cont_msg">
+                                <img src="https://randomuser.me/api/portraits/women/84.jpg" class="rounded-circle user_img_msg">
+                            </div>
+                        </div>
                             }
                         }
                     </div>
@@ -145,13 +145,18 @@
     <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/Chat.js"></script>
 
-    <script>const messageBox = document.getElementById("messageBox");
+    <script>
+const messageBox = document.getElementById("messageBox");
 
         async function SetReceiver(userId, userName, userAvatar) {
-            document.getElementById("ReceiverName").innerText = userName;
+            currentReceiver = document.getElementById("ReceiverName");
+            let openStatusIcon = document.getElementById("openStatusOf-" + currentReceiver.innerHTML);
+            currentReceiver.innerHTML = userName;
             document.getElementById("ReceiverAvatar").src = userAvatar;
             document.getElementById("receiverId").innerHTML = userId;
             document.getElementById("receiverName").innerHTML = userName;
+            openStatusIcon.id = "openStatusOf-" + userName;
+            openStatusIcon.className = document.getElementById("statusOf-" + userName).className;
 
             const messagesExchanged = await loadReceiverMessages(userId);
 
