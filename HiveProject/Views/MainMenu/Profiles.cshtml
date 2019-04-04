@@ -86,9 +86,8 @@
 
                                 <input type="file" name="Avatar" />
                                 @Html.ValidationMessageFor(model => model.Thumbnail, "", new { @class = "text-danger" })
-                                <div class="col-md-offset-2 col-md-10">
-
-                                    <input type="submit" value="Save" class="btn btn-default" />
+                                <div class="col-md-offset-2 col-md-10" style="margin-top: 10px">
+                                    <input type="submit" value="Save" class="btn btn-default" style="background-color:#a51a64; color:ActiveBorder" />
                                 </div>
                                 @if (TempData["Error"] != null)
                                 {
@@ -127,7 +126,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Save" class="btn btn-default" />
+                                    <input type="submit" value="Save" class="btn btn-default" style="background-color:#a51a64; color:ActiveBorder" />
                                 </div>
                                 @if (TempData["BioError"] != null)
                                 {
@@ -147,7 +146,7 @@
                     </h3>
 
                     <hr />
-                    <button type="button" class="btn btn-outline-danger" href="#">
+                    <button type="button" class="btn btn-default" style="background-color:#a51a64; color:ActiveBorder" href="#">
                         View All Messages
                     </button>
                 </div>

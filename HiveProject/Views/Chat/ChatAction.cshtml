@@ -60,11 +60,7 @@
                             </div>
                             <div class="user_info">
                                 <span id="ReceiverName">@Model.ActiveUser.UserName</span>
-                                <p id="ReceiverUnread">1767 Messages</p>
-                            </div>
-                            <div class="video_cam">
-                                <span><i class="fas fa-video"></i></span>
-                                <span><i class="fas fa-phone"></i></span>
+                                <p id="ReceiverUnread"></p>
                             </div>
                         </div>
                         <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
@@ -107,7 +103,7 @@
                         }
                     </div>
                     <div class="w-100 card-footer p-0 bg-light border border-bottom-0 border-left-0 border-right-0">
-                        <div class="row m-0 p-0">
+                        <div class="row m-0 p-0" style="background-color:#bab8ad">
                             <div class="col-9 m-0 p-1">
                                 <span id="senderId" hidden>@Model.ActiveUser.Id</span>
                                 <span id="senderName" hidden>@Model.ActiveUser.UserName</span>
