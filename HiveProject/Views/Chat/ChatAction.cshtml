@@ -1,6 +1,5 @@
 ﻿@model  HiveProject.Models.MessageExchange
 @using HiveProject.Viewmodels
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,18 +59,8 @@
                                 <span id='openStatusOf-@Model.ActiveUser.UserName' class="status_icon offline"></span>
                             </div>
                             <div class="user_info">
-
-
                                 <span id="ReceiverName">@Model.ActiveUser.UserName</span>
-                                <p id="ReceiverUnread"> @Html.DisplayFor(model => model.Receiver.UserGender), @Html.DisplayFor(model => model.Receiver.Age)</p>
-
-                            </div>
-
-
-
-                            <div class="video_cam">
-                                <span><i class="fas fa-video"></i></span>
-                                <span><i class="fas fa-phone"></i></span>
+                                <p id="ReceiverUnread"></p>
                             </div>
                         </div>
                         <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
@@ -114,13 +103,12 @@
                         }
                     </div>
                     <div class="w-100 card-footer p-0 bg-light border border-bottom-0 border-left-0 border-right-0">
-                        <div class="row m-0 p-0">
+                        <div class="row m-0 p-0" style="background-color:#bab8ad">
                             <div class="col-9 m-0 p-1">
                                 <span id="senderId" hidden>@Model.ActiveUser.Id</span>
                                 <span id="senderName" hidden>@Model.ActiveUser.UserName</span>
                                 <span id="receiverId" hidden>@Model.Receiver.Id</span>
                                 <span id="receiverName" hidden>@Model.Receiver.UserName</span>
-
                             </div>
                         </div>
                     </div>
@@ -154,14 +142,11 @@
     <script src="~/Scripts/Chat.js"></script>
 
     <script>
-        const messageBox = document.getElementById("messageBox");
+    const messageBox = document.getElementById("messageBox");
 
-        async function SetReceiver(userId, userName, userAvatar, isSent = false) {
-
-            
+        async function SetReceiver(userId, userName, userAvatar) {
             currentReceiver = document.getElementById("ReceiverName");
             let openStatusIcon = document.getElementById("openStatusOf-" + currentReceiver.innerHTML);
-
             currentReceiver.innerHTML = userName;
             document.getElementById("ReceiverAvatar").src = userAvatar;
             document.getElementById("receiverId").innerHTML = userId;
@@ -173,9 +158,7 @@
 
             clearMessageBox();
 
-
-
-            messagesExchanged.forEach(msg => displayMessageInBox(msg, msg.SenderId == document.getElementById("senderId").innerHTML));
+            messagesExchanged.forEach(msg => displayMessageInBox(msg));
         }
 
 

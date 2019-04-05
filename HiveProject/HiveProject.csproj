@@ -203,7 +203,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InteractionController.cs" />
     <Compile Include="Controllers\MainMenuController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
@@ -212,7 +211,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Managers\MatchingManager.cs" />
-    <Compile Include="Managers\InteractionManager.cs" />
     <Compile Include="MessageRepository\MessageRepository.cs" />
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.cs" />
     <Compile Include="Migrations\201903071428403_InitializeNewDatabase.Designer.cs">
@@ -298,8 +296,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chat.css" />
+    <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\bee.png" />
     <Content Include="Content\Images\Hive.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\thumbnail.jpg" />
     <Content Include="Content\main-page.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Sounds\notification.mp3" />
@@ -407,10 +408,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\MainMenu\Profiles.cshtml" />
     <Content Include="Views\Manage\ChangeUsername.cshtml" />
-    <Content Include="Views\MainMenu\Matching.cshtml" />
     <Content Include="Scripts\leaflet\leaflet-src.js.map" />
     <Content Include="Scripts\leaflet\leaflet.js.map" />
-    <Content Include="Views\MainMenu\Index22.cshtml" />
     <Content Include="Views\MainMenu\Index.cshtml" />
     <Content Include="Views\Map\ClickedUser.cshtml" />
     <Content Include="Views\MainMenu\AddLike.cshtml" />
@@ -423,7 +422,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Interaction\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

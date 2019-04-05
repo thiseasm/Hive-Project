@@ -19,7 +19,6 @@ namespace HiveProject.Controllers
     public class MainMenuController : Controller
     {
         private MatchingManager _Manager { get; set; }
-        private InteractionManager _Locator { get; set; }
 
         public MainMenuController()
         {
@@ -28,9 +27,8 @@ namespace HiveProject.Controllers
 
         public ActionResult Index()
         {
-            //string currentUser = HttpContext.User.Identity.GetUserId();
             if (User.IsInRole("Admin"))
-                return RedirectToAction("Index","Admin");
+                return RedirectToAction("Index", "Admin");
 
             return View();
         }
@@ -41,12 +39,12 @@ namespace HiveProject.Controllers
             var profile = new UsersViewModel();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var user =await db.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                var user = await db.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 if (user != null)
                 {
                     profile.Id = user.Id;
                     profile.Thumbnail = user.Thumbnail;
-                    profile.Bio=user.Bio;
+                    profile.Bio = user.Bio;
                     profile.Username = user.UserName;
                     profile.Age = user.Age;
                     profile.Gender = user.UserGender;
@@ -101,7 +99,6 @@ namespace HiveProject.Controllers
 
         public async Task<ActionResult> Matching()
         {
-            // await manager.AsyncMatching();
             var matches = await _Manager.ReturnMatchesAsync();
             return View(matches);
         }
@@ -126,12 +123,12 @@ namespace HiveProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditBio(ProfileViewModel user)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 TempData["BioError"] = "Maximum 80 characters";
                 return RedirectToAction("Profiles");
             }
-            //var currentUser = HttpContext.User.Identity.GetUserId();
+
             using (var db = new ApplicationDbContext())
             {
                 var userDb = await db.Users.SingleOrDefaultAsync(x => x.Id == user.Id);
@@ -151,14 +148,14 @@ namespace HiveProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditPreferences(Preferences preferences)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View("Preferences");
             }
             var currentUser = HttpContext.User.Identity.GetUserId();
             using (var db = new ApplicationDbContext())
             {
-                var user = await db.Users.FirstOrDefaultAsync(x=>x.Id==currentUser);
+                var user = await db.Users.FirstOrDefaultAsync(x => x.Id == currentUser);
                 user.Preferences = preferences.Preference;
                 user.Radius = preferences.Range;
                 await db.SaveChangesAsync();
