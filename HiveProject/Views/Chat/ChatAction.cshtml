@@ -1,5 +1,6 @@
 ﻿@model  HiveProject.Models.MessageExchange
 @using HiveProject.Viewmodels
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,9 +60,15 @@
                                 <span id='openStatusOf-@Model.ActiveUser.UserName' class="status_icon offline"></span>
                             </div>
                             <div class="user_info">
+
+
                                 <span id="ReceiverName">@Model.ActiveUser.UserName</span>
-                                <p id="ReceiverUnread">1767 Messages</p>
+                                <p id="ReceiverUnread"> @Html.DisplayFor(model => model.Receiver.UserGender), @Html.DisplayFor(model => model.Receiver.Age)</p>
+
                             </div>
+
+
+
                             <div class="video_cam">
                                 <span><i class="fas fa-video"></i></span>
                                 <span><i class="fas fa-phone"></i></span>
@@ -113,6 +120,7 @@
                                 <span id="senderName" hidden>@Model.ActiveUser.UserName</span>
                                 <span id="receiverId" hidden>@Model.Receiver.Id</span>
                                 <span id="receiverName" hidden>@Model.Receiver.UserName</span>
+
                             </div>
                         </div>
                     </div>
@@ -146,11 +154,14 @@
     <script src="~/Scripts/Chat.js"></script>
 
     <script>
-    const messageBox = document.getElementById("messageBox");
+        const messageBox = document.getElementById("messageBox");
 
-        async function SetReceiver(userId, userName, userAvatar) {
+        async function SetReceiver(userId, userName, userAvatar, isSent = false) {
+
+            
             currentReceiver = document.getElementById("ReceiverName");
             let openStatusIcon = document.getElementById("openStatusOf-" + currentReceiver.innerHTML);
+
             currentReceiver.innerHTML = userName;
             document.getElementById("ReceiverAvatar").src = userAvatar;
             document.getElementById("receiverId").innerHTML = userId;
@@ -162,7 +173,9 @@
 
             clearMessageBox();
 
-            messagesExchanged.forEach(msg => displayMessageInBox(msg));
+
+
+            messagesExchanged.forEach(msg => displayMessageInBox(msg, msg.SenderId == document.getElementById("senderId").innerHTML));
         }
 
 
