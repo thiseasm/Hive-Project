@@ -28,3 +28,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+#clickedUser {
+    background-color: aliceblue;
+    background-image: url('Images/Hive.png');
+    background-repeat: no-repeat;
+    background-position: right;
+}

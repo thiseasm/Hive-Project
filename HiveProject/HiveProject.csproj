@@ -299,6 +299,7 @@
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\bee.png" />
     <Content Include="Content\Images\Hive.png" />
+    <Content Include="Content\Images\icons8-return-48.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\thumbnail.jpg" />
     <Content Include="Content\main-page.css" />
