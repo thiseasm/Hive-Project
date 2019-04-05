@@ -60,16 +60,17 @@
                             </div>
                             <div class="user_info">
                                 <span id="ReceiverName">@Model.ActiveUser.UserName</span>
+                                
                                 <p id="ReceiverUnread"></p>
                             </div>
                         </div>
                         <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
                         <div class="action_menu">
                             <ul>
-                                <li><i class="fas fa-user-circle"></i>@Html.ActionLink("View profile", "ChatProfiles", "Chat") </li>
-                                <li><i class="fas fa-users" onclick="clearMessageBox()"></i>Delete message history</li>
-                                <li><i class="fas fa-plus"></i> Add to group</li>
-                                <li><i class="fas fa-ban"></i> Block</li>
+                               
+                                <li><i class="fas fa-users" onclick="clearMessageBox()"></i>Clear message Box</li>
+                               
+                                
                             </ul>
                         </div>
                     </div>

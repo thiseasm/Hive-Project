@@ -41,7 +41,7 @@ namespace HiveProject.Models
 
         public string ProfilePicture { get; set; }
         public int Age { get; set; }
-        public Models.ApplicationUser.Gender Gender { get; set; }
+        public ApplicationUser.Gender Gender { get; set; }
         public string Bio { get; set; }
 
         public DateTime CreatedOn { get; set; }

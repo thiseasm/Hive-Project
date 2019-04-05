@@ -59,62 +59,6 @@ namespace HiveProject.Controllers
         }
 
 
-        public async Task<ActionResult> ChatProfiles()
-        {
-            var profile = new UsersViewModel();
-
-            {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-                if (user != null)
-                {
-                    profile.Id = user.Id;
-                    profile.Thumbnail = user.Thumbnail;
-                    profile.Gender = user.UserGender;
-                }
-            }
-            return View(profile);
-        }
-
-        //public Task Unmatch(int toBeDeleted)
-        //{
-        //      List<Matches> allKnown = _context.Matches
-        //        .Include(u => u.MyUserId)
-        //        .Include(u => u.MatchedUserId)
-        //        .Where(u => (u.MatchedUserId == toBeDeleted.Id || u.MyUserId == toBeDeleted.Id))
-        //        .ToList();
-
-        //    if (!(allKnown is null) && allKnown.Count > 0)
-        //    {
-        //        _context.Matches.RemoveRange(allKnown);
-        //        _context.SaveChanges();
-        //    }
-        //    else return
-        //    {
-
-        //    }
-        //}
-
-
-        //public bool DeleteMsgs(Message toBeDeleted)
-        //{
-
-        //    List<Message> allHisMessages = _context.Messages
-        //        .Include(u => u.Sender)
-        //        .Include(u => u.Receiver)
-        //        .Where(u => (u.Sender.Id == toBeDeleted.Id) || (u.Receiver.Id == toBeDeleted.Id))
-        //        .ToList();
-
-        //    if (!(allHisMessages is null) && allHisMessages.Count > 0)
-        //    {
-        //        _context.Messages.RemoveRange(allHisMessages);
-        //        _context.SaveChanges();
-        //    }
-        //    else
-        //    {
-
-        //    }
-
-        //}
+       
     }
 }
-           
