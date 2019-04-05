@@ -158,7 +158,7 @@
 
             clearMessageBox();
 
-            messagesExchanged.forEach(msg => displayMessageInBox(msg));
+            messagesExchanged.forEach(msg => displayMessageInBox(msg, msg.SenderId == document.getElementById("senderId").innerHTML));
         }
 
 

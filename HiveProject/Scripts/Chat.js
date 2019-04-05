@@ -31,6 +31,7 @@ function displayMessageInBox(message, isSent = false) {
     let theMessage = message.Body ? message.Body : message;
     let msgText = theMessage.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     let divaki = document.createElement("div");
+
     divaki.className = "d-flex mb-4 justify-content-" + (!isSent ? "start" : "end");
 
     let divoMinima = document.createElement("div");

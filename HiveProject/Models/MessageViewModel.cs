@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using HiveProject.Models;
 
 namespace HiveProject.Models
 {
@@ -25,10 +26,8 @@ namespace HiveProject.Models
         public DateTime Date { get; set; }
 
         public UsersViewModel UserDetail { get; set; }
-
         public bool hasBeenRead { get; set; }
-        public bool IsOnline { get; set; }
-        public string LastSeen { get; set; }
+       
         public string Thumbnail { get; set; }
     }
 
@@ -41,6 +40,9 @@ namespace HiveProject.Models
         public List<UsersViewModel> UserMatches { get; set; }
 
         public string ProfilePicture { get; set; }
+        public int Age { get; set; }
+        public Models.ApplicationUser.Gender Gender { get; set; }
+        public string Bio { get; set; }
 
         public DateTime CreatedOn { get; set; }
     }
