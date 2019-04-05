@@ -19,17 +19,17 @@
         <font color="green">@ViewBag.message</font>
     }
     <div class="form-group">
-        @Html.LabelFor(model => model.Range, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Range, new { htmlAttributes = new { @Value = 5, min = 5, max = 30, } }) Km
-            @Html.ValidationMessageFor(model => model.Range, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
         @Html.LabelFor(m => m.Preference, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.EnumDropDownListFor(m => m.Preference, "Select Gender", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Preference, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Range, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Range, new { htmlAttributes = new { @Value = 5, min = 5, max = 30, } }) Km
+            @Html.ValidationMessageFor(model => model.Range, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -43,5 +43,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Map", "Index", null, new { @class = "btn btn-primary", @role = "button" })
+    <a href='@Url.Action("Index", "MainMenu")'>
+        <img src="~/Content/Images/icons8-return-48.png" />
+    </a>
 </div>
