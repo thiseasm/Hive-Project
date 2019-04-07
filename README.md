@@ -10,7 +10,7 @@ The second one, is to match the active user preferences regarding genders, meani
 Should a profile that matches the user's criteria is found, he can choose to either Like or Dislike it. Then that profile will disappear from the user's map forever. If the profile is liked and the user get's liked back in return, an option for the two users to chat, will become available. Keep in mind, that no user can in advance know, if his/hers/its profile is liked/disliked or even viewed from another user.
 
 ### Built with:
-* [Leafelt](https://leafletjs.com/) - Interactive map and markers
+* [Leaflet](https://leafletjs.com/) - Interactive map and markers
 * [Mapbox](https://www.mapbox.com/) - For the map's tileset
 * [jQuery](https://jquery.com/) - View & Controller communication
 * [Bootstrap](https://getbootstrap.com/) - General styling
@@ -18,3 +18,7 @@ Should a profile that matches the user's criteria is found, he can choose to eit
 * [Entity Framework](https://docs.microsoft.com/en-us/ef/) - As the object-relational mapping (ORM) framework
 * [SignalR](https://dotnet.microsoft.com/apps/aspnet/real-time) - Real-time chat and messaging system
 
+### Authors:
+* [Thoedoros Gkinis](https://www.linkedin.com/in/ginisth/) - Business logic and Server Architecture
+* [Foivos Kalfopoulos](https://www.linkedin.com/in/foivos-kalfopoulos-58008412a/) - Chat and User Interaction
+* [Thiseas Matthaioudakis](https://www.linkedin.com/in/thiseas-matthaioudakis/) - Map, User Profiles and General CSS / Team Leader
