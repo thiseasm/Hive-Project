@@ -19,6 +19,6 @@ Should a profile that matches the user's criteria is found, he can choose to eit
 * [SignalR](https://dotnet.microsoft.com/apps/aspnet/real-time) - Real-time chat and messaging system
 
 ### Authors:
-* [Thoedoros Gkinis](https://www.linkedin.com/in/ginisth/) - Business logic and Server Architecture
+* [Theodoros Gkinis](https://www.linkedin.com/in/ginisth/) - Business logic and Server Architecture
 * [Foivos Kalfopoulos](https://www.linkedin.com/in/foivos-kalfopoulos-58008412a/) - Chat and User Interaction
 * [Thiseas Matthaioudakis](https://www.linkedin.com/in/thiseas-matthaioudakis/) - Map, User Profiles and General CSS / Team Leader
